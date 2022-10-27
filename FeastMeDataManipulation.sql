@@ -58,7 +58,7 @@ UPDATE chefs SET cert_number = :cert_number_input, specialty = :specialty_input 
 -- Update food information
 UPDATE foods SET order_id = :order_id_input, food_name = :food_name_input, description = :description_input, is_vegan = :is_vegan_input, is_vegetarian = :is_vegetarian_input, price = :price_input WHERE food_id = :food_id_input
 -- Update ingredient information
-UPDATE ingredients SET ingredient_name = :ingredient_name_input, expiry_date = :expiry_date_input, in_stock = :in_stock_input WHERE ingredient_id = ingredient_name_input
+UPDATE ingredients SET ingredient_name = :ingredient_name_input, expiry_date = :expiry_date_input, in_stock = :in_stock_input WHERE ingredient_id = :ingredient_name_input
 ------------
 /* DELETE */
 ------------
