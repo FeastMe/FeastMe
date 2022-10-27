@@ -31,11 +31,13 @@ ORDER BY drivers.account_id;
 SELECT first_name, last_name, specialty, type FROM accounts
 INNER JOIN chefs ON chefs.account_id = accounts.account_id
 ORDER BY chefs.account_id;
-/************  WORKONTHIS  
--- Get all orders with patron's name, delivery driver's license plate, order time, total price, and order status
-SELECT first_name, last_name, CONCAT(first_name, ' ', last_name) AS patron_name, license_plate, order_time, total_price, order_status FROM orders
-INNER JOIN patrons ON patrons.account_id = orders.order_id
-************/
+-- Get all orders with patron's name, address, delivery driver's license plate, order time, total price, and order status
+SELECT first_name, last_name, CONCAT(first_name, ' ', last_name) AS patron_name, street_number, street, unit_number, city, state, zip_code, CONCAT(street_number, ' ', street, ' ', unit_number, ' ', city, ' ', state, ' ', zip_code) AS patron_address, license_plate, order_time, total_price, order_status 
+FROM orders
+INNER JOIN accounts ON orders.ordered_by = accounts.account_id
+INNER JOIN patrons ON orders.ordered_by = patrons.account_id
+INNER JOIN drivers ON orders.delivery_by = drivers.account_id
+ORDER BY order_time DESC;
 -- Get all foods with their names, order_id, description, whether they are vegan or vegetariain, and price.
 SELECT food_name, order_id, description, is_vegan, is_vegetarian, price FROM foods;
 -- Get all ingredients with their name, expiry date, and whether they are in stock or not.
@@ -44,8 +46,26 @@ SELECT ingredient_name, expiry_date, in_stock FROM ingredients;
 ------------
 /* UPDATE */
 ------------
-
-
+-- Update account information
+UPDATE accounts SET first_name = :first_name_input, last_name = :last_name_input, email = :email_input, password = :password_input, phone_number = :phone_number_input WHERE account_id = :account_id_input
+-- Update patron account information
+UPDATE patrons SET street_number = :street_number_input, street = :street_input, unit_number = :unit_number_input, city = :city_input, state = :state_input, zip_code = :zip_code_input WHERE account_id = :account_id_input
+-- Update driver account information
+UPDATE drivers SET license_plate = :license_place_input, license_number = :license_number_input WHERE account_id = :account_id_input
+-- Update chefs account information
+UPDATE chefs SET cert_number = :cert_number_input, specialty = :specialty_input WHERE account_id = :account_id_input
+-- Orders entity will not allow update or delete since it is a transaction table.
+-- Update food information
+UPDATE foods SET order_id = :order_id_input, food_name = :food_name_input, description = :description_input, is_vegan = :is_vegan_input, is_vegetarian = :is_vegetarian_input, price = :price_input WHERE food_id = :food_id_input
+-- Update ingredient information
+UPDATE ingredients SET ingredient_name = :ingredient_name_input, expiry_date = :expiry_date_input, in_stock = :in_stock_input WHERE ingredient_id = ingredient_name_input
 ------------
 /* DELETE */
 ------------
+-- Delete an account
+DELETE FROM accounts WHERE account_id = :account_id_input
+-- Orders entity will not allow update or delete since it is a transaction table.
+-- Delete food
+DELETE FROM foods WHERE food_id = :food_id_input
+-- Delete ingredient
+DELETE FROM ingredients WHERE ingredient_id = :ingredient_id_input

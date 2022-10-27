@@ -8,10 +8,10 @@ DROP TABLE IF EXISTS accounts;
 CREATE TABLE accounts (
     account_id INT(11) NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(20) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(225) NOT NULL,
+    phone_number VARCHAR(255) NOT NULL,
     type VARCHAR(1) NOT NULL,
     PRIMARY KEY(account_id)
 );
@@ -28,6 +28,7 @@ CREATE TABLE patrons (
     zip_code VARCHAR(5) NOT NULL,
     PRIMARY KEY(patron_id),
     FOREIGN KEY(account_id) REFERENCES accounts(account_id)
+    ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS drivers;
@@ -38,6 +39,7 @@ CREATE TABLE drivers (
     license_number VARCHAR(45) UNIQUE NOT NULL,
     PRIMARY KEY(driver_id),
     FOREIGN KEY(account_id) REFERENCES accounts(account_id)
+    ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS chefs;
@@ -48,6 +50,7 @@ CREATE TABLE chefs (
     specialty VARCHAR(255) NOT NULL,
     PRIMARY KEY(chef_id),
     FOREIGN KEY(account_id) REFERENCES accounts(account_id)
+    ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS orders;
@@ -56,7 +59,7 @@ CREATE TABLE orders (
     ordered_by INT(11),
     delivery_by INT(11),
     order_time DATETIME NOT NULL,
-    total_price DECIMAL(65, 2),
+    total_price DECIMAL(65, 2) NOT NULL,
     order_status VARCHAR(255) NOT NULL,
     PRIMARY KEY(order_id),
     FOREIGN KEY(ordered_by) REFERENCES patrons(account_id),
@@ -83,6 +86,16 @@ CREATE TABLE ingredients (
     expiry_date DATE NOT NULL,
     in_stock TINYINT(1) NOT NULL,
     PRIMARY KEY(ingredient_id)
+);
+
+DROP TABLE IF EXISTS foods_has_ingredients;
+CREATE TABLE foods_has_ingredients (
+    f_has_i_id INT(11) NOT NULL AUTO_INCREMENT,
+    food_id INT(11),
+    ingredient_id INT(11),
+    PRIMARY KEY(f_has_i_id),
+    FOREIGN KEY(food_id) REFERENCES foods(food_id),
+    FOREIGN KEY(ingredient_id) REFERENCES ingredients(ingredient_id)
 );
 
 /* Populate Tables */
