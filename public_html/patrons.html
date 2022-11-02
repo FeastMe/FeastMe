@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeastMe</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    [ <a href="index.html">Home</a> |
+    <a href="accounts.html">Accounts</a> |
+    <a href="patrons.html">Patrons</a> |
+    <a href="chefs.html">Chefs</a> |
+    <a href="drivers.html">Drivers</a> |
+    <a href="orders.html">Orders</a> |
+    <a href="foods.html">Foods</a> |
+    <a href="foods-ingredients.html">Foods & Ingredients</a> |
+    <a href="ingredients.html">Ingredients</a> ]
+    <h1>Patrons</h1>
+    <table>
+        <tr>
+            <th>Patron ID</th>
+            <th>Name</th>
+            <th>Street Number</th>
+            <th>Street</th>
+            <th>Unit Number</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>
+            <th>Delete</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Toph Li</td>
+            <td>82829</td>
+            <td>Main Street</td>
+            <td>None</td>
+            <td>Cleveland</td>
+            <td>Ohio</td>
+            <td>44109</td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <form action="#">
+        <fieldset>
+            <h3>Add a Patron:</h3>
+            <label for="account">Name:</label>
+            <select name="account" id="account">
+                <option>Toph Li</option>
+                <option>Dean Koo</option>
+                <option>Mya Parker</option>
+                <option>Tako Nielsen</option>
+            </select><br><br>
+            <label for="street-number">Street Number:</label>
+            <input type="text" id="street-number" name="street-number">
+            <label for="street">Street:</label>
+            <input type="text" id="street" name="street">
+            <label for="unit-number">Unit Number:</label>
+            <input type="text" id="unit-number" name="unit-number"><br><br>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="pnumber">
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state">
+            <label for="zip">Zip Code:</label>
+            <input type="text" id="zip" name="zip"><br><br>
+            <button type="button">Add</button>
+        </fieldset>
+    </form>
+    </div>
+    <br>
+    <div>
+        <form>
+            <fieldset>
+                <h3>Update Patron</h3>
+                <label for="patron-id">Patron ID:</label>
+                <select name="patron-id" id="patron-id">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                <label for="account">Name:</label>
+                <select name="account" id="account">
+                    <option>Toph Li</option>
+                    <option>Dean Koo</option>
+                    <option>Mya Parker</option>
+                    <option>Tako Nielsen</option>
+                </select><br><br>
+                <label for="street-number">Street Number:</label>
+                <input type="text" id="street-number" name="street-number">
+                <label for="street">Street:</label>
+                <input type="text" id="street" name="street">
+                <label for="unit-number">Unit Number:</label>
+                <input type="text" id="unit-number" name="unit-number"><br><br>
+                <label for="city">City:</label>
+                <input type="text" id="city" name="pnumber">
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state">
+                <label for="zip">Zip Code:</label>
+                <input type="text" id="zip" name="zip"><br><br>
+                <button type="button">Update</button>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form>
+            <fieldset>
+                <h3>Search for a Patron</h3>
+                <label for="patron-id">Patron ID:</label>
+                <select name="patron-id" id="patron-id">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                <label for="account">Name:</label>
+                <input type="text" id="account" name="account"><br><br>
+                <button type="submit">Search</button>
+            </fieldset>
+        </form>
+    </div>
+
+<footer></footer>
+</body>
+</html>
