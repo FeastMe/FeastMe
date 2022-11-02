@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeastMe</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    [ <a href="index.html">Home</a> |
+    <a href="accounts.html">Accounts</a> |
+    <a href="patrons.html">Patrons</a> |
+    <a href="chefs.html">Chefs</a> |
+    <a href="drivers.html">Drivers</a> |
+    <a href="orders.html">Orders</a> |
+    <a href="foods.html">Foods</a> |
+    <a href="foods-ingredients.html">Foods & Ingredients</a> |
+    <a href="ingredients.html">Ingredients</a> ]
+    <h1>Accounts</h1>
+    <table>
+        <tr>
+            <th>Account ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Phone Number</th>
+            <th>Type</th> <!-- Hard coded for now -->
+            <th>Delete</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Karl</td>
+            <td>Johnson</td>
+            <td>kmj8345@gmail.com</td>
+            <td>password125</td>
+            <td>419-856-1111</td>
+            <td>Chef</td> 
+            <td><button type="button">Delete</button></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Toph</td>
+            <td>Li</td>
+            <td>tophrli@gmail.com</td>
+            <td>r&un8Awa0y</td>
+            <td>419-255-3107</td>
+            <td>Patron</td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Tom</td>
+            <td>Maan</td>
+            <td>maaningtom@gmail.com</td>
+            <td>OhioLovesMe1</td>
+            <td>419-778-0101</td>
+            <td>Driver</td> 
+            <td><button type="button">Delete</button></td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <form action="#">
+            <fieldset>
+                <h3>Add an Account:</h3>
+                <label for="fname">First name:</label>
+                <input type="text" id="fname" name="fname">
+                <label for="lname">Last name:</label>
+                <input type="text" id="lname" name="lname">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email"><br><br>
+                <label for="lname">Password:</label>
+                <input type="text" id="lname" name="lname">
+                <label for="pnumber">Phone Number:</label>
+                <input type="text" id="pnumber" name="pnumber">
+                <label for="Type">Type:</label>
+                <select name="account-type" id="account-type">
+                    <option value="patron">Patron</option>
+                    <option value="chef">Chef</option>
+                    <option value="driver">Driver</option>
+                </select>
+                <br><br>
+                <button type="button">Add</button>
+            </fieldset>
+
+        </form>
+    </div>
+    <br>
+
+    <div>
+        <form>
+            <fieldset>
+                <h3>Update Account</h3>
+                <label for="account-id">Account ID:</label>
+                <select name="account-id" id="account-id">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select>
+                <label for="fname">First name:</label>
+                <input type="text" id="fname" name="fname">
+                <label for="lname">Last name:</label>
+                <input type="text" id="lname" name="lname">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email"><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                <label for="pnumber">Phone Number:</label>
+                <input type="text" id="pnumber" name="pnumber">
+                <label for="type">Type:</label>
+                <select name="account-type" id="account-type">
+                    <option value="patron">Patron</option>
+                    <option value="chef">Chef</option>
+                    <option value="driver">Driver</option>
+                </select><br><br>
+                <button type="button">Update</button>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form>
+            <fieldset>
+                <h3>Search for an Account</h3>
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" name="fname">
+                <label for="fname">Last Name:</label>
+                <input type="text" id="lname" name="lname"><br><br>
+                <button type="submit">Search</button>
+            </fieldset>
+        </form>
+    </div>
+
+<footer></footer>
+</body>
+</html>
