@@ -65,32 +65,77 @@
     <div>
         <form action="#">
             <fieldset>
+                <h3>Add new foods and ingredients:</h3>
+                <label for="food">Food name:</label>
+                <input type="text" id="food" name="food">
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description">
+                <label for="dietary">Vegan/Vegetarian:</label>
+                <select name="dietary" id="dietary">
+                    <option value="Vegan">Vegan</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="None">None</option>
+                </select>
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price"><br><br>
+                <label for="ingredient">Ingredient name:</label>
+                <input type="text" id="ingredient" name="ingredient">
+                <label for="date">Expiry Date:</label>
+                <input type="date" id="date" name="date">
+                <label for="stock">In Stock?</label>
+                <select name="stock" id="stock">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select><br><br>
+                <button type="button">Add</button>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form action="#">
+            <fieldset>
                 <h3>Update Foods <--> Ingredient</h3>
-                <label for="order-id">Order ID:</label>
-                <select name="order-id" id="order-id">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <label for="food">Food ID:</label>
+                <select name="food" id="food">
+                    <option>Wild Rice Salad</option>
+                    <option>Brown Butter Mushrooms</option>
+                    <option>Miso Orrechiette</option>
+                    <option>Seared Dill Salmon</option>
+                    <option>Baked Lamb Chops</option>
                 </select>
                 <br><br>
-                <label for="order-id">Ingredient ID:</label>
-                <select name="order-id" id="order-id">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
+                <label for="ingredient">Ingredient ID:</label>
+                <select name="ingredient" id="ingredient">
+                    <option>salmon</option>
+                    <option>brussel sprouts</option>
+                    <option>lamb chops</option>
+                    <option>orecchiette pasta</option>
+                    <option>carrots</option>
+                    <option>wild rice</option>
+                    <option>oyster mushroom</option>
+                    <option>blueberry</option>
+                    <option>olive oil</option>
+                    <option>garlic</option>
                 </select>
                 <br>
                 <br>
                 <button type="button">Update</button>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form>
+            <fieldset>
+                <h3>Search for foods or an ingredient</h3>
+                <input type="radio" id="selection" name="selection">
+                <label for="food-select">Food</label><br>
+                <input type="radio" id="selection" name="selection">
+                <label for="ingredient-select">Ingredient</label><br><br>
+                <label for="selection-name">Name:</label>
+                <input type="text" id="selection-name" name="selection-name"><br><br>
+                <button type="submit">Search</button>
             </fieldset>
         </form>
     </div>

@@ -127,21 +127,14 @@
         <form>
             <fieldset>
                 <h3>Search for an Order</h3>
-                <label for="ordered-by">Ordered By:</label>
-                <select name="ordered-by" id="ordered-by">
-                    <option>Toph Li</option>
-                    <option>Dean Koo</option>
-                    <option>Mya Parker</option>
-                    <option>Tako Nielsen</option>
-                </select>
-                <label for="delivery">Delivery By:</label>
-                <select name="delivery" id="delivery">
-                    <option>Sarah Taylor</option>
-                    <option>Tom Maan</option>
-                    <option>Alan Liebowitz</option>
-                </select>
+                <input type="radio" id="selection" name="selection">
+                <label for="ordered">Ordered By</label><br>
+                <input type="radio" id="selection" name="selection">
+                <label for="delivered">Delivered By</label><br><br>
+                <label for="od-name">Name:</label>
+                <input type="text" id="od-name" name="od-name"><br><br>
                 <label for="order-time">Order Time:</label>
-                <input type="datetime" id="order-time" name="order-time"><br><br>
+                <input type="time" id="order-time" name="order-time" min="00:00" max="23:59"><br><br>
                 <button type="submit">Search</button>
             </fieldset>
         </form>
