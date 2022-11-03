@@ -154,3 +154,13 @@ INSERT INTO ingredients(ingredient_name, expiry_date, in_stock) VALUES
 ('blueberry', '2022-10-23',	0),
 ('olive oil', '2025-06-18',	1),
 ('garlic', '2023-01-14', 1);
+
+INSERT INTO foods_has_ingredients(food_id, ingredient_id) VALUES
+(1, 6),
+(1, 2),
+(1, 9),
+(2, 7),
+(3, 4),
+(3, 5),
+(4, 1),
+(4, 9);
