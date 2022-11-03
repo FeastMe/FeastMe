@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeastMe</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    [ <a href="index.html">Home</a> |
+    <a href="accounts.html">Accounts</a> |
+    <a href="patrons.html">Patrons</a> |
+    <a href="chefs.html">Chefs</a> |
+    <a href="drivers.html">Drivers</a> |
+    <a href="orders.html">Orders</a> |
+    <a href="foods.html">Foods</a> |
+    <a href="foods-ingredients.html">Foods & Ingredients</a> |
+    <a href="ingredients.html">Ingredients</a> ]
+    <h1>Ingredients</h1>
+    <table>
+        <tr>
+            <th>Ingredient ID</th>
+            <th>Ingredient Name</th>
+            <th>Expiry Date</th>
+            <th>In Stock</th>
+            <th>Delete</th>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>brussel sprouts</td>
+            <td>2022-10-25</td>
+            <td>No</td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>orecchiette pasta</td>
+            <td>2023-12-09</td>
+            <td>Yes</td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>salmon</td>
+            <td>2022-10-22</td>
+            <td>Yes</td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+    </table>
+    <p><em>Note: An ingredient cannot be deleted if associated with a dish.</em></p>
+    <br>
+    <div>
+        <form action="#">
+            <fieldset>
+                <h3>Add an Ingredient</h3>
+                <label for="ingredient">Ingredient name:</label>
+                <input type="text" id="ingredient" name="ingredient">
+                <label for="date">Expiry Date:</label>
+                <input type="date" id="date" name="date">
+                <label for="stock">In Stock?</label>
+                <select name="stock" id="stock">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <br>
+                <br>
+                <button type="button">Add</button>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form action="#">
+            <fieldset>
+                <h3>Update an Ingredient</h3>
+                <label for="order-id">Ingredient ID:</label>
+                <select name="order-id" id="order-id">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select>
+                <label for="ingredient">Ingredient name:</label>
+                <input type="text" id="ingredient" name="ingredient">
+                <label for="date">Expiry Date:</label>
+                <input type="date" id="date" name="date">
+                <label for="stock">In Stock?</label>
+                <select name="stock" id="stock">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <br>
+                <br>
+                <button type="button">Update</button>
+
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form>
+            <fieldset>
+                <h3>Search for an Ingredient</h3>
+                <label for="food-name">Ingredient name:</label>
+                <input type="text" id="ingredient" name="ingredient"><br><br>
+                <button type="submit">Search</button>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>

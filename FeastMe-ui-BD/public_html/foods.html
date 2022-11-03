@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeastMe</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    [ <a href="index.html">Home</a> |
+    <a href="accounts.html">Accounts</a> |
+    <a href="patrons.html">Patrons</a> |
+    <a href="chefs.html">Chefs</a> |
+    <a href="drivers.html">Drivers</a> |
+    <a href="orders.html">Orders</a> |
+    <a href="foods.html">Foods</a> |
+    <a href="foods-ingredients.html">Foods & Ingredients</a> |
+    <a href="ingredients.html">Ingredients</a> ]
+    <h1>Foods</h1>
+    <table>
+        <tr>
+            <th>Food ID</th>
+            <th>Order ID</th>
+            <th>Made By</th>
+            <th>Food Name</th>
+            <th>Description</th>
+            <th>Vegan/Vegetarian</th>
+            <th>Price</th>
+            <th>Delete</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>5</td>
+            <td>Ava Park</td>
+            <td>Wild Rice Salad</td>
+            <td>Tossed with roasted balsamic brussel sprouts, cranberries, feta, and maple butternut squash.</td>
+            <td>
+                <select name="food-type" id="food-type">
+                    <option value="vegan">Vegan</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="none">None</option>
+                </select>
+            </td>
+            <td>11.75</td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>4</td>
+            <td>Karl Johnson</td>
+            <td>Miso Orrechiette</td>
+            <td>Orrechiette pasta in a creamy almond miso carrot sauce.</td>
+            <td>
+                <select name="food-type" id="food-type">
+                    <option value="vegan">Vegan</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="none">None</option>
+                </select>
+            </td>
+            <td>12.50</td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>2</td>
+            <td>Miguel Rivera</td>
+            <td>Seared Dill Salmon</td>
+            <td>Seared wild atlantic salmon, coated in a dill sauce and tossed with lemon wild rice.</td>
+            <td>
+                <select name="food-type" id="food-type">
+                    <option value="vegan">Vegan</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="none">None</option>
+                </select>
+            </td>
+            <td>17.99</td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <form action="#">
+            <fieldset>
+                <h3>Add a Dish</h3>
+                <label for="order-id">Order ID:</label>
+                <select name="order-id" id="order-id">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>N/A</option>
+                </select>
+                <label for="food">Food name:</label>
+                <input type="text" id="food" name="food">
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description">
+
+                <label for="madeBy">Made By</label>
+                <select name="madeBy" id="madeBy">
+                    <option value="AvaPark">Ava Park</option>
+                    <option value="KarlJohnson">KarlJohnson</option>
+                    <option value="MiguelRivera">MiguelRivera</option>
+                    <option value="nobody">N/A</option>
+                </select>
+
+                <label for="ingredient1">Ingredient 1:</label>
+                <select name="ingredient1" id="ingredient1">
+                    <option value="brusselSprouts">brussel sprouts</option>
+                    <option value="orecchiettePasta">orecchiette pasta</option>
+                    <option value="salmon">salmon</option>
+                </select>
+
+                <label for="ingredient2">Ingredient 2:</label>
+                <select name="ingredient2" id="ingredient2">
+                    <option value="brusselSprouts">brussel sprouts</option>
+                    <option value="orecchiettePasta">orecchiette pasta</option>
+                    <option value="salmon">salmon</option>
+                </select>
+
+                <label for="ingredient3">Ingredient 3:</label>
+                <select name="ingredient3" id="ingredient3">
+                    <option value="brusselSprouts">brussel sprouts</option>
+                    <option value="orecchiettePasta">orecchiette pasta</option>
+                    <option value="salmon">salmon</option>
+                </select>
+
+                <label for="dietary">Vegan/Vegetarian:</label>
+                <select name="dietary" id="dietary">
+                    <option value="Vegan">Vegan</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="None">None</option>
+                </select>
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price"><br><br>
+                <button type="button">Add</button>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form action="#">
+            <fieldset>
+                <h3>Update a Dish</h3>
+                <label for="order-id">Order ID:</label>
+                <select name="order-id" id="order-id">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+                <label for="madeBy">Made By</label>
+                <select name="madeBy" id="madeBy">
+                    <option value="AvaPark">Ava Park</option>
+                    <option value="KarlJohnson">KarlJohnson</option>
+                    <option value="MiguelRivera">MiguelRivera</option>
+                    <option value="nobody">N/A</option>
+                </select>
+                <label for="food">Food name:</label>
+                <input type="text" id="food" name="food">
+                <label for="main-ingredient">Description</label>
+                <input type="text" id="description" name="description">
+                <label for="dietary">Vegan/Vegetarian:</label>
+                <select name="dietary" id="dietary">
+                    <option value="Vegan">Vegan</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="None">None</option>
+                </select>
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price"><br><br>
+                <button type="button">Update</button>
+
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form>
+            <fieldset>
+                <h3>Search for a Dish</h3>
+                <label for="food-name">Food name:</label>
+                <input type="text" id="ingredient" name="ingredient"><br><br>
+                <button type="submit">Search</button>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    
+</body>
+</html>

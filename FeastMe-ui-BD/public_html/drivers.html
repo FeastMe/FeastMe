@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeastMe</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    [ <a href="index.html">Home</a> |
+    <a href="accounts.html">Accounts</a> |
+    <a href="patrons.html">Patrons</a> |
+    <a href="chefs.html">Chefs</a> |
+    <a href="drivers.html">Drivers</a> |
+    <a href="orders.html">Orders</a> |
+    <a href="foods.html">Foods</a> |
+    <a href="foods-ingredients.html">Foods & Ingredients</a> |
+    <a href="ingredients.html">Ingredients</a> ]
+    <h1>Drivers</h1>
+    <table>
+        <tr>
+            <th>Drivers ID</th>
+            <th>Name</th>
+            <th>License Plate</th>
+            <th>License #</th>
+            <th>Delete</th>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Sarah Taylor</td>
+            <td>A04CF5</td>
+            <td>65885432</td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Tom Maan</td>
+            <td>JL779P</td>
+            <td>70015661</td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <form action="#">
+        <fieldset>
+            <h3>Add a Driver:</h3>
+            <label for="account">Name:</label>
+            <select name="account" id="account">
+                <option>Sarah Taylor</option>
+                <option>Tom Maan</option>
+                <option>Alan Liebowitz</option>
+            </select>
+            <label for="lplate">License Plate:</label>
+            <input type="text" id="lplate" name="lplate">
+            <label for="lnumber">License #:</label>
+            <input type="text" id="lnumber" name="lnumber"><br><br>
+            <button type="button">Add</button>
+        </fieldset>
+    </form>
+    </div>
+    <br>
+    <div>
+        <form action="#">
+        <fieldset>
+            <h3>Update a Driver</h3>
+            <label for="driver-id">Driver ID:</label>
+            <select name="driver-id" id="driver-id">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select><br><br>
+            <label for="account">Name:</label>
+            <select name="account" id="account">
+                <option>Sarah Taylor</option>
+                <option>Tom Maan</option>
+                <option>Alan Liebowitz</option>
+            </select>
+            <label for="lplate">License Plate:</label>
+            <input type="text" id="lplate" name="lplate">
+            <label for="lnumber">License #:</label>
+            <input type="text" id="lnumber" name="lnumber"><br><br>
+            <button type="button">Update</button>
+        </fieldset>
+    </form>
+    </div>
+    <br>
+    <div>
+        <form>
+            <fieldset>
+                <h3>Search for a Driver</h3>
+                <label for="lnumber">License #:</label>
+                <input type="text" id="lnumber" name="lnumber"><br><br>
+                <button type="submit">Search</button>
+            </fieldset>
+        </form>
+    </div>
+<footer></footer>
+</body>
+</html>

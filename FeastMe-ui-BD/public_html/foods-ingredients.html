@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeastMe</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    [ <a href="index.html">Home</a> |
+    <a href="accounts.html">Accounts</a> |
+    <a href="patrons.html">Patrons</a> |
+    <a href="chefs.html">Chefs</a> |
+    <a href="drivers.html">Drivers</a> |
+    <a href="orders.html">Orders</a> |
+    <a href="foods.html">Foods</a> |
+    <a href="foods-ingredients.html">Foods & Ingredients</a> |
+    <a href="ingredients.html">Ingredients</a> ]
+    <h1>Foods/Ingredients Intersection Table</h1>
+    <table>
+        <tr>
+            <th>f_has_i_id</th>
+            <th>Foods</th>
+            <th>Ingredients</th>
+            <th>Delete</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Wild Rice Salad</td>
+            <td>
+                <ul>
+                    <li>wild rice</li>
+                    <li>brussel sprouts</li>
+                </ul>
+            </td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Seared Dill Salmon</td>
+            <td>
+                <ul>
+                    <li>salmon</li>
+                    <li>olive oil</li>
+                </ul>
+            </td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Miso Orrechiette</td>
+            <td>
+                <ul>
+                    <li>orrechiette pasta</li>
+                    <li>carrots</li>
+                </ul>
+            </td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <div>
+        <form action="#">
+            <fieldset>
+                <h3>Add new foods and ingredients:</h3>
+
+                <label for="food">Food name:</label>
+                <select name="foodName id="foodName">
+                    <option value="wildRiceSalad">Wild Rice Salad</option>
+                    <option value="SearedDillSalmon">Seared Dill Salmon	</option>
+                    <option value="MisoOrrechiette">Miso Orrechiette</option>
+                </select>
+
+                <label for="ingredients">Ingredients:</label>
+                <select name="ingredients" id="ingredients">
+                    <option value="brusselSprouts">brussel sprouts</option>
+                    <option value="orecchiettePasta">orecchiette pasta</option>
+                    <option value="salmon">salmon</option>
+                </select>
+
+                <!--
+                <label for="dietary">Vegan/Vegetarian:</label>
+                <select name="dietary" id="dietary">
+                    <option value="Vegan">Vegan</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="None">None</option>
+                </select>
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price"><br><br>
+                <label for="ingredient">Ingredient name:</label>
+                <input type="text" id="ingredient" name="ingredient">
+                <label for="date">Expiry Date:</label>
+                <input type="date" id="date" name="date">
+                <label for="stock">In Stock?</label>
+                <select name="stock" id="stock">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>-->
+                <br><br>
+                <button type="button">Add</button>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form action="#">
+            <fieldset>
+                <h3>Update Foods <--> Ingredient</h3>
+                <label for="food">Food ID:</label>
+                <select name="food" id="food">
+                    <option>Wild Rice Salad</option>
+                    <option>Brown Butter Mushrooms</option>
+                    <option>Miso Orrechiette</option>
+                    <option>Seared Dill Salmon</option>
+                    <option>Baked Lamb Chops</option>
+                </select>
+                <br><br>
+                <label for="ingredient">Ingredient ID:</label>
+                <select name="ingredient" id="ingredient">
+                    <option>salmon</option>
+                    <option>brussel sprouts</option>
+                    <option>lamb chops</option>
+                    <option>orecchiette pasta</option>
+                    <option>carrots</option>
+                    <option>wild rice</option>
+                    <option>oyster mushroom</option>
+                    <option>blueberry</option>
+                    <option>olive oil</option>
+                    <option>garlic</option>
+                </select>
+                <br>
+                <br>
+                <button type="button">Update</button>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form>
+            <fieldset>
+                <h3>Search for foods or an ingredient</h3>
+                <input type="radio" id="selection" name="selection">
+                <label for="food-select">Food</label><br>
+                <input type="radio" id="selection" name="selection">
+                <label for="ingredient-select">Ingredient</label><br><br>
+                <label for="selection-name">Name:</label>
+                <input type="text" id="selection-name" name="selection-name"><br><br>
+                <button type="submit">Search</button>
+            </fieldset>
+        </form>
+    </div>
+
+<footer></footer>
+</body>
+</html>

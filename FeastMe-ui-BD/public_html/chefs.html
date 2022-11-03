@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeastMe</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    [ <a href="index.html">Home</a> |
+    <a href="accounts.html">Accounts</a> |
+    <a href="patrons.html">Patrons</a> |
+    <a href="chefs.html">Chefs</a> |
+    <a href="drivers.html">Drivers</a> |
+    <a href="orders.html">Orders</a> |
+    <a href="foods.html">Foods</a> |
+    <a href="foods-ingredients.html">Foods & Ingredients</a> |
+    <a href="ingredients.html">Ingredients</a> ]
+    <h1>Chefs</h1>
+    <table>
+        <tr>
+            <th>Chef ID</th>
+            <th>Name</th>
+            <th>Certificate #</th>
+            <th>Specialty</th>
+            <th>Delete</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Ava Park</td>
+            <td>CN1865</td>
+            <td>Sous Chef</td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Karl Johnson</td>
+            <td>NX9644</td>
+            <td>Chef</td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <form action="#">
+        <fieldset>
+            <h3>Add a Chef:</h3>
+            <label for="account">Name:</label>
+            <select name="account" id="account">
+                <option>Karl Johnson</option>
+                <option>Miguel Rivera</option>
+                <option>Ava Park</option>
+            </select>
+            <label for="cert-num">Certificate #:</label>
+            <input type="text" id="cert-num" name="cert-num">
+            <label for="specialty">Specialty:</label>
+            <select name="account-type" id="account-type">
+                <option value="chef">Chef</option>
+                <option value="sous-chef">Sous Chef</option>
+                <option value="pastry-chef">Pastry Chef</option>
+            </select><br><br>
+            <button type="button">Add</button>
+        </fieldset>
+    </form>
+    </div>
+    <br>
+    <div>
+        <form action="#">
+        <fieldset>
+            <h3>Update a Chef:</h3>
+            <label for="chef-id">Chef ID:</label>
+            <select name="chef-id" id="chef-id">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+            <label for="account">Name:</label>
+            <select name="account" id="account">
+                <option>Karl Johnson</option>
+                <option>Miguel Rivera</option>
+                <option>Ava Park</option>
+            </select><br><br>
+            <label for="cert-num">Certificate #:</label>
+            <input type="text" id="cert-num" name="cert-num">
+            <label for="specialty">Specialty:</label>
+            <select name="account-type" id="account-type">
+                <option value="chef">Chef</option>
+                <option value="sous-chef">Sous Chef</option>
+                <option value="pastry-chef">Pastry Chef</option>
+            </select><br><br>
+            <button type="button">Update</button>
+        </fieldset>
+    </form>
+    </div>
+    <br>
+    <div>
+        <form>
+            <fieldset>
+                <h3>Search for a Chef</h3>
+                <label for="cert-num">Certificate #:</label>
+                <input type="text" id="cert-num" name="cert-num"><br><br>
+                <button type="submit">Search</button>
+            </fieldset>
+        </form>
+    </div>
+<footer></footer>
+</body>
+</html>
