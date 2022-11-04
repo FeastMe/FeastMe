@@ -97,7 +97,7 @@ CREATE TABLE foods_has_ingredients (
     ingredient_id INT(11) NOT NULL,
     PRIMARY KEY(f_has_i_id),
     FOREIGN KEY(food_id) REFERENCES foods(food_id) ON DELETE CASCADE,
-    FOREIGN KEY(ingredient_id) REFERENCES ingredients(ingredient_id)
+    FOREIGN KEY(ingredient_id) REFERENCES ingredients(ingredient_id) ON DELETE CASCADE
 );
 
 /* Populate Tables */
