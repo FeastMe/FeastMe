@@ -3,6 +3,11 @@
 # Bianca Davies
 # Elliott Larsen
 
+# Citation for the following functions:
+# Date: 11/10/2022
+# Copied from: CS340 Flask starter example code
+# Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/app.py 
+
 from flask import Flask, render_template, json, redirect
 from flask_mysqldb import MySQL
 from flask import request
@@ -25,8 +30,9 @@ mysql = MySQL(app)
 @app.route('/')
 def index():
     return render_template('index.j2')
-
-# CRUD on accounts entity.
+###########################
+# CRUD on accounts entity.#
+###########################
 @app.route('/accounts', methods=['POST', 'GET'])
 def accounts():
     # READ accounts
@@ -69,17 +75,34 @@ def edit_accounts(account_id):
 @app.route('/delete_account/<int:account_id>')
 def delete_account(account_id):
     # DELETE accounts
-    query = f"DELETE FROM accounts WHERE account_id = '%s';"
-    cur = mysql.connection.cursor()
-    cur.execute(query, (account_id,))
-    mysql.connection.commit()
+    try:
+        query = f"DELETE FROM accounts WHERE account_id = '%s';"
+        cur = mysql.connection.cursor()
+        cur.execute(query, (account_id,))
+        mysql.connection.commit()
+        return redirect('/accounts')
 
-    return redirect('/accounts')
+    except:
+        return "<h3>Not all entities have been implemented yet and you are trying to delete an account that is bound by foreign key constraints.</h3>"
 
-@app.route('/add_account')
+@app.route('/add_account/', methods=['POST'])
 def add_account():
     # CREATE account
-    return "Add account"
+    if request.method == 'POST':
+        if request.form.get("Add_Account"):
+            first_name = request.form["first_name"]
+            last_name = request.form["last_name"]
+            email = request.form["email"]
+            password = request.form["password"]
+            phone_number = request.form["phone_number"]
+            account_type = request.form["account_type"]
+
+            query = "INSERT INTO accounts(first_name, last_name, email, password, phone_number, type) VALUES (%s, %s, %s, %s, %s, %s);"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (first_name, last_name, email, password, phone_number, account_type))
+            mysql.connection.commit()
+
+            return redirect('/accounts')
 
 @app.route('/patrons')
 def patrons():
@@ -113,4 +136,4 @@ def ingredients():
 if __name__ == "__main__":
 
     #Start the app on port 3000, it will be different once hosted
-    app.run(port=8081, debug=True)
+    app.run(port=8080, debug=True)
