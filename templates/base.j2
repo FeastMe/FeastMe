@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeastMe</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    [ <a href="{{ url_for('index') }}">Home</a> |
+    <a href="{{ url_for('accounts') }}">Accounts</a> |
+    <a href="{{ url_for('patrons') }}">Patrons</a> |
+    <a href="{{ url_for('chefs') }}">Chefs</a> |
+    <a href="{{ url_for('drivers') }}">Drivers</a> |
+    <a href="{{ url_for('orders') }}">Orders</a> |
+    <a href="{{ url_for('foods') }}">Foods</a> |
+    <a href="{{ url_for('foods_has_ingredients') }}">Foods & Ingredients</a> |
+    <a href="{{ url_for('ingredients') }}">Ingredients</a> ]
+
+    {% block content %}
+    {% endblock %}
+
+    {% block script %}
+    {% endblock %}
+</body>
+</html>

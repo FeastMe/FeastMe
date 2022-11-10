@@ -1,0 +1,29 @@
+{% extends 'base.j2' %}
+{% block content %}
+
+
+<h1>Accounts</h1>
+<table>
+{% if accounts %}
+    <thead>
+        <tr>
+            {% for attribute in accounts[0].keys() %}
+                <th> {{ attribute }} </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in accounts %}
+        <tr>
+            {% for key in item.keys() %}
+                <td>{{ item[key] }} </td>
+            {% endfor %}
+                <td><a href="edit_account/{{ item.account_id }}">Edit</a></td>
+                <td><a href="delete_account/{{ item.account_id }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+{% endif %}
+{% endblock %}
