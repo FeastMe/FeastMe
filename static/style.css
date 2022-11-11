@@ -1,0 +1,52 @@
+a:hover {
+    background-color: lavender;
+}
+
+table,th, td{
+    border: 1px solid purple;
+}
+
+th, td {
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+}
+
+
+fieldset {
+    border: 1px solid slateblue;
+    background-color: lavender;
+  }
+
+input {
+    outline: 0;
+    border-width: 0 0 1.5px;
+    border-color: blueviolet;
+    background-color: lavender; 
+    margin-right: 20px;
+  }
+
+/* 
+Citation for pill button design
+Date: 11/10/2022
+Source from W3Schools 
+URL: https://www.w3schools.com/howto/howto_css_pill_button.asp
+*/
+
+.button {
+    border: none;
+    background-color: slateblue;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+  }
+
+.button:hover {
+    background-color: #967FF0;
+  }

@@ -1,4 +1,6 @@
-{# Date: 11/10/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
+{% extends 'base.j2' %}
+{% block content %}
+
 <html>
 <body>
     <div>
@@ -22,10 +24,9 @@
                     {% endfor %} 
             {% endif %} 
         </table>
-
         <div id="edit">
             <form id="editAccount" action="/edit_account/{{account[0].account_id}}" method="post">
-                <legend><strong>Edit Account</strong></legend>
+                <h3>Edit Account</h3>
                 <fieldset>
                     <input type="hidden" value="{{account[0].account_id}}" id="account_id" name="account_id" required>
                     
@@ -37,18 +38,19 @@
                     
                     <label for="email">email:</label>
                     <input type="text" value="{{account[0].email}}" id="email" name="email" required>
-
+                    <br>
                     <label for="password">password:</label>
                     <input type="text" value="{{account[0].password}}" id="password" name="password" required>
-
                     <label for="phone_number">phone_number:</label>
                     <input type="text" value="{{account[0].phone_number}}" id="phone_number" name="phone_number" required>
 
                     <label for="account_type">type:</label>
                     <input type="text" value="{{account[0].type}}" id="account_type" name="account_type" required>
-
-                <input type="submit" value="Edit" name="Edit_Account">
-                <a href='/accounts'><input class="btn" type="button" value="Cancel"></a>
+                    <br>
+                    <input type="submit" value="Edit" name="Edit_Account" class="button">
+                    <a href='/accounts'><input class="button" type="button" value="Cancel"></a>
+                </fieldset>                
             </form>
 
 </html>
+{% endblock %}
