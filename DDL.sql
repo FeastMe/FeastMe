@@ -93,10 +93,10 @@ CREATE TABLE ingredients (
 DROP TABLE IF EXISTS foods_has_ingredients;
 CREATE TABLE foods_has_ingredients (
     f_has_i_id INT(11) NOT NULL AUTO_INCREMENT,
-    food_id INT(11) NOT NULL,
-    ingredient_id INT(11) NOT NULL,
+    food_id INT(11),
+    ingredient_id INT(11),
     PRIMARY KEY(f_has_i_id),
-    FOREIGN KEY(food_id) REFERENCES foods(food_id),
+    FOREIGN KEY(food_id) REFERENCES foods(food_id) ON DELETE CASCADE,
     FOREIGN KEY(ingredient_id) REFERENCES ingredients(ingredient_id) ON DELETE CASCADE
 );
 
