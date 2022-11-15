@@ -38,18 +38,30 @@
                     
                     <label for="email">email:</label>
                     <input type="text" value="{{account[0].email}}" id="email" name="email" required>
-                    <br>
+                    
+                    <br><br>
+
                     <label for="password">password:</label>
                     <input type="text" value="{{account[0].password}}" id="password" name="password" required>
+                    
+                    {# Citation for phone number input
+                    Date: 11/14/2022
+                    Source from MDN Web docs 
+                    URL: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel #}
                     <label for="phone_number">phone_number:</label>
-                    <input type="text" value="{{account[0].phone_number}}" id="phone_number" name="phone_number" required>
-
+                    <input type="tel" value="{{account[0].phone_number}}" id="phone_number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                    
                     <label for="account_type">type:</label>
-                    <input type="text" value="{{account[0].type}}" id="account_type" name="account_type" required>
-                    <br>
-                    <input type="submit" value="Edit" name="Edit_Account" class="button">
+                    <select name="account_type" type="text" value="{{account[0].type}}" id="account_type" required>
+                        <option value="patron">Patron</option>
+                        <option value="chef">Chef</option>
+                        <option value="driver">Driver</option>
+                     </select>
+                    <br><br>
+
+                    <input type="submit" value="Save" name="Edit_Account" class="button">
                     <a href='/accounts'><input class="button" type="button" value="Cancel"></a>
-                </fieldset>                
+                </fieldset>                   
             </form>
 
 </html>
