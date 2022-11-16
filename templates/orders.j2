@@ -1,0 +1,29 @@
+{# Date: 11/15/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/people.j2 #}
+{% extends 'base.j2' %}
+{% block content %}
+
+<h1>Orders</h1>
+<table>
+{% if orders %}
+    <thead>
+        <tr>
+            {% for attribute in orders[0].keys() %}
+                <th> {{ attribute }} </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in orders %}
+        <tr>
+            {% for key in item.keys() %}
+                <td>{{ item[key] }} </td>
+            {% endfor %}
+                <td><a href="edit_order/{{ item.order_id }}">Edit</a></td>
+                <td><a href="delete_order/{{ item.order_id }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+{% endif %}
+</table>
+
+{% endblock %}

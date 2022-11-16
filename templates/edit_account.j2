@@ -1,0 +1,68 @@
+{% extends 'base.j2' %}
+{% block content %}
+
+<html>
+<body>
+    <div>
+        <h1>Editing Account</h1>
+        <table>
+            {% if account %}
+                <thead>
+                    <tr>
+                        {% for key in account[0].keys() %}
+                            <th>{{ key }}</th>
+                        {% endfor %} 
+                    </tr>
+                <thead>
+                <tbody>
+                    {% for item in account %}
+                    <tr>
+                        {% for key in item.keys() %}
+                            <td>{{ item[key] }}</td> 
+                        {% endfor %} 
+                    </tr> 
+                    {% endfor %} 
+            {% endif %} 
+        </table>
+        <div id="edit">
+            <form id="editAccount" action="/edit_account/{{account[0].account_id}}" method="post">
+                <h3>Edit Account</h3>
+                <fieldset>
+                    <input type="hidden" value="{{account[0].account_id}}" id="account_id" name="account_id" required>
+                    
+                    <label for="first_name">first name:</label>
+                    <input type="text" value="{{account[0].first_name}}" id="first_name" name="first_name" required>
+                    
+                    <label for="last_name">last name:</label>
+                    <input type="text" value="{{account[0].last_name}}" id="last_name" name="last_name" required>
+                    
+                    <label for="email">email:</label>
+                    <input type="text" value="{{account[0].email}}" id="email" name="email" required>
+                    
+                    <br><br>
+
+                    <label for="password">password:</label>
+                    <input type="text" value="{{account[0].password}}" id="password" name="password" required>
+                    
+                    {# Citation for phone number input
+                    Date: 11/14/2022
+                    Source from MDN Web docs 
+                    URL: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel #}
+                    <label for="phone_number">phone_number:</label>
+                    <input type="tel" value="{{account[0].phone_number}}" id="phone_number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                    
+                    <label for="account_type">type:</label>
+                    <select name="account_type" type="text" value="{{account[0].type}}" id="account_type" required>
+                        <option value="patron">Patron</option>
+                        <option value="chef">Chef</option>
+                        <option value="driver">Driver</option>
+                     </select>
+                    <br><br>
+
+                    <input type="submit" value="Save" name="Edit_Account" class="button">
+                    <a href='/accounts'><input class="button" type="button" value="Cancel"></a>
+                </fieldset>                   
+            </form>
+
+</html>
+{% endblock %}

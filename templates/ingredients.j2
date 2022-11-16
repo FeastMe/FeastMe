@@ -1,0 +1,29 @@
+{# Date: 11/15/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/people.j2 #}
+{% extends 'base.j2' %}
+{% block content %}
+
+<h1>Ingredients</h1>
+<table>
+{% if ingredients %}
+    <thead>
+        <tr>
+            {% for attribute in ingredients[0].keys() %}
+                <th> {{ attribute }} </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in ingredients %}
+        <tr>
+            {% for key in item.keys() %}
+                <td>{{ item[key] }} </td>
+            {% endfor %}
+                <td><a href="edit_ingredient/{{ item.ingredient_id }}">Edit</a></td>
+                <td><a href="delete_ingredient/{{ item.ingredient_id }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+{% endif %}
+</table>
+
+{% endblock %}
