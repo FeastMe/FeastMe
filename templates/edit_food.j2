@@ -1,0 +1,65 @@
+{% extends 'base.j2' %}
+{% block content %}
+
+<html>
+<body>
+    <div>
+        <h1>Editing Food</h1>
+        <table>
+            {% if food %}
+                <thead>
+                    <tr>
+                        {% for key in food[0].keys() %}
+                            <th>{{ key }}</th>
+                        {% endfor %} 
+                    </tr>
+                <thead>
+                <tbody>
+                    {% for item in food %}
+                    <tr>
+                        {% for key in item.keys() %}
+                            <td>{{ item[key] }}</td> 
+                        {% endfor %} 
+                    </tr> 
+                    {% endfor %} 
+            {% endif %} 
+        </table>
+        <div id="edit">
+            <form id="editFood" action="/edit_food/{{food[0].food_id}}" method="post">
+                <h3>Edit Food</h3>
+                <fieldset>
+                    <input type="hidden" value="{{food[0].food_id}}" id="food_id" name="food_id" required>
+                    
+                    <label for="order_id">order_id:</label>
+                    <input type="number" value="{{food[0].order_id}}" id="order_id" name="order_id" required>
+                    
+                    <label for="made_by">made_by:</label>
+                    <input type="number" value="{{food[0].made_by}}" id="made_by" name="made_by" required>
+                    
+                    <label for="food_name">food_name:</label>
+                    <input type="text" value="{{food[0].food_name}}" id="food_name" name="food_name" required>
+                    
+                    <br><br>
+
+                    <label for="description">description:</label>
+                    <input type="text" value="{{food[0].description}}" id="description" name="description" required>
+
+                    <label for="is_vegan">is_vegan:</label>
+                    <input type="number" value="{{food[0].is_vegan}}" id="is_vegan" name="is_vegan" required>
+
+                    <label for="is_vegetarian">is_vegetarian:</label>
+                    <input type="number" value="{{food[0].is_vegetarian}}" id="is_vegetarian" name="is_vegetarian" required>
+
+                    <label for="price">price:</label>
+                    <input type="number" step="0.01" min=0 value="{{food[0].price}}" id="price" name="price" required>
+
+                
+                    <br><br>
+
+                    <input type="submit" value="Save" name="Edit_Food" class="button">
+                    <a href='/foods'><input class="button" type="button" value="Cancel"></a>
+                </fieldset>                   
+            </form>
+
+</html>
+{% endblock %}

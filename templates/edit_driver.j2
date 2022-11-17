@@ -1,0 +1,47 @@
+{% extends 'base.j2' %}
+{% block content %}
+
+<html>
+<body>
+    <div>
+        <h1>Editing Driver</h1>
+        <table>
+            {% if driver %}
+                <thead>
+                    <tr>
+                        {% for key in driver[0].keys() %}
+                            <th>{{ key }}</th>
+                        {% endfor %} 
+                    </tr>
+                <thead>
+                <tbody>
+                    {% for item in driver %}
+                    <tr>
+                        {% for key in item.keys() %}
+                            <td>{{ item[key] }}</td> 
+                        {% endfor %} 
+                    </tr> 
+                    {% endfor %} 
+            {% endif %} 
+        </table>
+        <div id="edit">
+            <form id="editDriver" action="/edit_driver/{{driver[0].account_id}}" method="post">
+                <h3>Edit Driver</h3>
+                <fieldset>
+                    <input type="hidden" value="{{driver[0].account_id}}" id="driver_id" name="driver_id" required>
+                    
+                    <label for="license_placte">license_plate:</label>
+                    <input type="text" value="{{driver[0].license_plate}}" id="license_plate" name="license_plate" required>
+                    
+                    <label for="license_number">license_number:</label>
+                    <input type="text" value="{{driver[0].license_number}}" id="license_number" name="license_number" required>
+                    
+                    <br><br>
+
+                    <input type="submit" value="Save" name="Edit_Driver" class="button">
+                    <a href='/drivers'><input class="button" type="button" value="Cancel"></a>
+                </fieldset>                   
+            </form>
+
+</html>
+{% endblock %}

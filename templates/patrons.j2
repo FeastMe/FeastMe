@@ -4,7 +4,7 @@
 
 <h1>Patrons</h1>
 <table>
-{% if patrons %}
+{% if patrons and unassigned_patrons%}
     <thead>
         <tr>
             {% for attribute in patrons[0].keys() %}
@@ -23,7 +23,69 @@
         </tr>
         {% endfor %}
     </tbody>
-{% endif %}
 </table>
 
+
+{# Date: 11/17/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
+<h3>Add Patron</h3>
+<div id="add">
+    <form id="addPatron" action="/add_patron/" method="post">
+        <fieldset>
+            <label for="patron_id">Patron's account id:</label>
+            <select name="patron_id" id="patron_id">
+                {% for patron in unassigned_patrons %}
+                    <option value="{{ patron.account_id }}">{{ patron.account_id }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="street_number">street_number:</label>
+            <input type="text" id="street_number" name="street_number">
+
+            <label for="street">street:</label>
+            <input type="text" id="street" name="street" required>    
+
+            <label for="unit_number">unit_number:</label>
+            <input type="text" id="unit_number" name="unit_number">
+
+            <label for="city">city:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="state">state:</label>
+            <input type="state" id="state" name="state" required>
+                    
+            <label for="zip_code">zip_code:</label>
+            <input type="zip_code" id="zip_code" name="zip_code" required>
+
+            <input type="submit" value="Submit" name="Add_Patron" class="button" type="button">
+        </fieldset>
+    </form>
+
+{% elif patrons %}
+    <thead>
+        <tr>
+            {% for attribute in patrons[0].keys() %}
+                <th> {{ attribute }} </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in patrons %}
+        <tr>
+            {% for key in item.keys() %}
+                <td>{{ item[key] }} </td>
+            {% endfor %}
+                <td><a href="edit_patron/{{ item.account_id }}">Edit</a></td>
+                <td><a href="delete_patron/{{ item.account_id }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+<h3>Add Patron</h3>
+
+</table>
+<h4>You must create a patron account first.  Please navigate to the accounts tab to create one.</h4>
+
+{% else %}
+<h4>Please create accounts first.</h4>
+{% endif %}
 {% endblock %}

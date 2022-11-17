@@ -4,7 +4,7 @@
 
 <h1>Drivers</h1>
 <table>
-{% if drivers %}
+{% if drivers and unassigned_drivers %}
     <thead>
         <tr>
             {% for attribute in drivers[0].keys() %}
@@ -23,7 +23,56 @@
         </tr>
         {% endfor %}
     </tbody>
-{% endif %}
 </table>
 
+{# Date: 11/17/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
+<h3>Add Driver</h3>
+<div id="add">
+    <form id="addDriver" action="/add_driver/" method="post">
+        <fieldset>
+            <label for="driver_id">Driver's account id:</label>
+            <select name="driver_id" id="driver_id">
+                {% for driver in unassigned_drivers %}
+                    <option value="{{ driver.account_id }}">{{ driver.account_id }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="license_plate">license_plate:</label>
+            <input type="text" id="license_plate" name="license_plate" required>
+
+            <label for="license_number">license_number:</label>
+            <input type="text" id="license_number" name="license_number" required>    
+            
+            <input type="submit" value="Submit" name="Add_Driver" class="button" type="button">
+        </fieldset>
+    </form>
+
+{% elif drivers %}
+    <thead>
+        <tr>
+            {% for attribute in drivers[0].keys() %}
+                <th> {{ attribute }} </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in drivers %}
+        <tr>
+            {% for key in item.keys() %}
+                <td>{{ item[key] }} </td>
+            {% endfor %}
+                <td><a href="edit_driver/{{ item.account_id }}">Edit</a></td>
+                <td><a href="delete_driver/{{ item.account_id }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+<h3>Add Driver</h3>
+
+</table>
+<h4>You must create a driver account first.  Please navigate to the accounts tab to create one.</h4>
+
+{% else %}
+<h4>Please create accounts first.</h4>
+{% endif %}
 {% endblock %}

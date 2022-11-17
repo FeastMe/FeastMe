@@ -12,7 +12,7 @@ CREATE TABLE accounts (
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     phone_number VARCHAR(255) NOT NULL,
-    type VARCHAR(6) NOT NULL,
+    type ENUM("Patron", "Driver", "Chef") NOT NULL,
     PRIMARY KEY(account_id)
 );
 
@@ -20,9 +20,9 @@ DROP TABLE IF EXISTS patrons;
 CREATE TABLE patrons (
     patron_id INT(11) NOT NULL AUTO_INCREMENT,
     account_id INT(11) NOT NULL,
-    street_number VARCHAR(45),
+    street_number VARCHAR(45) NULL,
     street VARCHAR(255) NOT NULL,
-    unit_number VARCHAR(45),
+    unit_number VARCHAR(45) NULL,
     city VARCHAR(255) NOT NULL,
     state VARCHAR(255) NOT NULL,
     zip_code VARCHAR(5) NOT NULL,
@@ -69,8 +69,8 @@ CREATE TABLE orders (
 DROP TABLE IF EXISTS foods;
 CREATE TABLE foods (
     food_id INT(11) NOT NULL AUTO_INCREMENT,
-    order_id INT(11),
-    made_by INT(11),
+    order_id INT(11) NULL,
+    made_by INT(11) NULL,
     food_name VARCHAR(255) UNIQUE NOT NULL,
     description VARCHAR(255) NOT NULL,
     is_vegan TINYINT(1) NOT NULL,
@@ -93,8 +93,8 @@ CREATE TABLE ingredients (
 DROP TABLE IF EXISTS foods_has_ingredients;
 CREATE TABLE foods_has_ingredients (
     f_has_i_id INT(11) NOT NULL AUTO_INCREMENT,
-    food_id INT(11),
-    ingredient_id INT(11),
+    food_id INT(11) NULL,
+    ingredient_id INT(11) NULL,
     PRIMARY KEY(f_has_i_id),
     FOREIGN KEY(food_id) REFERENCES foods(food_id) ON DELETE CASCADE,
     FOREIGN KEY(ingredient_id) REFERENCES ingredients(ingredient_id) ON DELETE CASCADE
@@ -138,12 +138,14 @@ INSERT INTO orders(ordered_by, delivery_by, order_time, total_price, order_statu
 (6, 2, '2022-10-19 03:00:00', '28.75',	'Ordered'),
 (10, 9, '2022-10-20 05:45:00', '19.00', 'En Route');
 
-INSERT INTO foods(order_id, food_name, description, is_vegan, is_vegetarian, price) VALUES
-(5, 'Wild Rice Salad', 'Tossed with roasted balsamic brussel sprouts, cranberries, feta, and maple butternut squash.', 0, 1, 11.75),
-(1, 'Brown Butter Mushrooms', 'Puffed pastry filled sauteed oyster mushrooms in a brown butter sage sauce, topped with parsley.', 0, 1, 14.00),
-(4, 'Miso Orrechiette', 'Orrechiette pasta in a creamy almond miso carrot sauce.', 1, 0, 12.50),
-(2, 'Seared Dill Salmon', 'Seared wild atlantic salmon, coated in a dill sauce and tossed with lemon wild rice.', 0, 0, 17.99),
-(3, 'Baked Lamb Chops', 'Herbed lamb chops with a spiced bluberry compote and hasselback potatoes',	0, 0, 21.50);
+INSERT INTO foods(order_id, made_by, food_name, description, is_vegan, is_vegetarian, price) VALUES
+(5, 8, 'Wild Rice Salad', 'Tossed with roasted balsamic brussel sprouts, cranberries, feta, and maple butternut squash.', 0, 1, 11.75),
+(1, 8, 'Brown Butter Mushrooms', 'Puffed pastry filled sauteed oyster mushrooms in a brown butter sage sauce, topped with parsley.', 0, 1, 14.00),
+(4, 1, 'Miso Orrechiette', 'Orrechiette pasta in a creamy almond miso carrot sauce.', 1, 0, 12.50),
+(2, 3, 'Seared Dill Salmon', 'Seared wild atlantic salmon, coated in a dill sauce and tossed with lemon wild rice.', 0, 0, 17.99),
+(3, 1, 'Baked Lamb Chops', 'Herbed lamb chops with a spiced bluberry compote and hasselback potatoes',	0, 0, 21.50),
+(1, NULL, 'Bottled Water', 'Cold bottled water', 1, 1, 3.45),
+(2, NULL, 'Coke', 'Cold coke', 1, 1, 4.15);
 
 INSERT INTO ingredients(ingredient_name, expiry_date, in_stock) VALUES
 ('salmon', '2022-10-22', 1),

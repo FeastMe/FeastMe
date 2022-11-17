@@ -1,0 +1,47 @@
+{% extends 'base.j2' %}
+{% block content %}
+
+<html>
+<body>
+    <div>
+        <h1>Editing Chef</h1>
+        <table>
+            {% if chef %}
+                <thead>
+                    <tr>
+                        {% for key in chef[0].keys() %}
+                            <th>{{ key }}</th>
+                        {% endfor %} 
+                    </tr>
+                <thead>
+                <tbody>
+                    {% for item in chef %}
+                    <tr>
+                        {% for key in item.keys() %}
+                            <td>{{ item[key] }}</td> 
+                        {% endfor %} 
+                    </tr> 
+                    {% endfor %} 
+            {% endif %} 
+        </table>
+        <div id="edit">
+            <form id="editChef" action="/edit_chef/{{chef[0].account_id}}" method="post">
+                <h3>Edit Chef</h3>
+                <fieldset>
+                    <input type="hidden" value="{{chef[0].account_id}}" id="chef_id" name="chef_id" required>
+                    
+                    <label for="cert_number">cert_number:</label>
+                    <input type="text" value="{{chef[0].cert_number}}" id="cert_number" name="cert_number" required>
+                    
+                    <label for="specialty">specialty:</label>
+                    <input type="text" value="{{chef[0].specialty}}" id="specialty" name="specialty" required>
+                    
+                    <br><br>
+
+                    <input type="submit" value="Save" name="Edit_Chef" class="button">
+                    <a href='/chefs'><input class="button" type="button" value="Cancel"></a>
+                </fieldset>                   
+            </form>
+
+</html>
+{% endblock %}
