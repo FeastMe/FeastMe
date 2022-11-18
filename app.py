@@ -336,7 +336,7 @@ def add_chef():
 def orders():
     # READ orders
     if request.method == 'GET':
-        query = "SELECT order_id, CONCAT(first_name, ' ', last_name) AS ordered_by, street_number, street, unit_number, city, state, zip_code, CONCAT(street_number, ' ', street, ' ', unit_number, ' ', city, ' ', state, ' ', zip_code) AS patron_address, license_plate, order_time, total_price, order_status\
+        query = "SELECT order_id, CONCAT(first_name, ' ', last_name) AS ordered_by, license_plate AS delivery_by, order_time, total_price, order_status\
         FROM orders\
         INNER JOIN accounts ON orders.ordered_by = accounts.account_id\
         INNER JOIN patrons ON orders.ordered_by = patrons.account_id\
@@ -346,23 +346,71 @@ def orders():
         cur.execute(query)
         orders = cur.fetchall()
 
-        return render_template('orders.j2', orders = orders)
+        query = "SELECT * FROM patrons;"
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        patrons = cur.fetchall()
+
+        query = "SELECT * FROM drivers;"
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        drivers = cur.fetchall()
+
+        return render_template('orders.j2', orders = orders, patrons = patrons, drivers = drivers)
 
 @app.route('/edit_order/<int:order_id>', methods=['POST', 'GET'])
 def edit_order(order_id):
     # UPDATE order
-    pass
+    if request.method == "GET":
+        query = "SELECT order_id, CONCAT(first_name, ' ', last_name) AS ordered_by, street_number, street, unit_number, city, state, zip_code, license_plate AS delivery_by, order_time, total_price, order_status\
+        FROM orders\
+        INNER JOIN accounts ON orders.ordered_by = accounts.account_id\
+        INNER JOIN patrons ON orders.ordered_by = patrons.account_id\
+        INNER JOIN drivers ON orders.delivery_by = drivers.account_id\
+        WHERE order_id = %s;" % (order_id)
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        order = cur.fetchall()
+        return render_template('edit_order.j2', order = order)
+
+    if request.method == "POST":
+        if request.form.get("Edit_Order"):
+            order_time = request.form['order_time']
+            total_price = request.form['total_price']
+            order_status = request.form['order_status']
+
+            query = "Update orders SET orders.order_time = %s, orders.total_price = %s, orders.order_status = %s WHERE orders.order_id = %s;"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (order_time, total_price, order_status, order_id))
+            mysql.connection.commit()
+            return redirect('/orders')
 
 @app.route('/delete_order/<int:order_id>')
 def delete_order(order_id):
     # DELETE order
-    pass
+    query = f"DELETE FROM orders WHERE order_id = '%s';"
+    cur = mysql.connection.cursor()
+    cur.execute(query, (order_id,))
+    mysql.connection.commit()
+    return redirect('/orders')
 
 @app.route('/add_order/', methods=['POST'])
 def add_order():
     # CREATE order
-    pass
+    if request.method == "POST":
+        if request.form.get("Add_Order"):
+            ordered_by = request.form['ordered_by']
+            delivery_by = request.form['delivery_by']
+            order_time = request.form['order_time']
+            total_price = request.form['total_price']
+            order_status = request.form['order_status']
 
+            query = "INSERT INTO orders (ordered_by, delivery_by, order_time, total_price, order_status) VALUES(%s, %s, %s, %s, %s);"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (ordered_by, delivery_by, order_time, total_price, order_status))
+            mysql.connection.commit()
+
+            return redirect('/orders')
 
 ########################
 # CRUD on foods entity.#
@@ -376,7 +424,17 @@ def foods():
         cur.execute(query)
         foods = cur.fetchall()
 
-        return render_template('foods.j2', foods = foods)
+        query = "SELECT * FROM orders;"
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        orders = cur.fetchall()
+        
+        query = "SELECT * FROM chefs;"
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        food_creators = cur.fetchall()
+
+        return render_template('foods.j2', foods = foods, orders = orders, food_creators = food_creators)
 
 @app.route('/edit_food/<int:food_id>', methods=['POST', 'GET'])
 def edit_food(food_id):
@@ -419,7 +477,22 @@ def delete_food(food_id):
 @app.route('/add_food/', methods=['POST'])
 def add_food():
     # CREATE food
-    pass
+    if request.method == "POST":
+        if request.form.get("Add_Food"):
+            order_id = request.form['order_id']
+            made_by = request.form['made_by']
+            food_name = request.form['food_name']
+            description = request.form['description']
+            is_vegan = request.form['is_vegan']
+            is_vegetarian = request.form['is_vegetarian']
+            price = request.form['price']
+
+            query = "INSERT INTO foods (order_id, made_by, food_name, description, is_vegan, is_vegetarian, price) VALUES(%s, %s, %s, %s, %s, %s, %s);"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (order_id, made_by, food_name, description, is_vegan, is_vegetarian, price))
+            mysql.connection.commit()
+
+            return redirect('/foods')
 
 ########################################
 # CRUD on foods_has_ingredients entity.#
@@ -445,7 +518,11 @@ def edit_foods_ingredients(f_has_i_id):
 @app.route('/delete_foods_ingredients/<int:f_has_i_id>')
 def delete_foods_ingredients(f_has_i_id):
     # DELETE foods_has_ingredients
-    pass
+    query = f"DELETE FROM foods_has_ingredients WHERE f_has_i_id = '%s';"
+    cur = mysql.connection.cursor()
+    cur.execute(query, (f_has_i_id,))
+    mysql.connection.commit()
+    return redirect('/foodsingredients')
 
 @app.route('/add_foods_ingredients/', methods=['POST'])
 def add_foods_ingredients():
@@ -503,9 +580,18 @@ def delete_ingredient(ingredient_id):
 @app.route('/add_ingredient/', methods=['POST'])
 def add_ingredient():
     # CREATE ingredient
-    pass
+    if request.method == "POST":
+        if request.form.get("Add_Ingredient"):
+            ingredient_name = request.form['ingredient_name']
+            expiry_date = request.form['expiry_date']
+            in_stock = request.form['in_stock']
+            
+            query = "INSERT INTO ingredients(ingredient_name, expiry_date, in_stock) VALUES (%s, %s, %s);"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (ingredient_name, expiry_date, in_stock))
+            mysql.connection.commit()
 
-
+            return redirect('/ingredients')
 
 # Listener
 if __name__ == "__main__":

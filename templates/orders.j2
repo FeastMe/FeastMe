@@ -4,7 +4,7 @@
 
 <h1>Orders</h1>
 <table>
-{% if orders %}
+{% if orders and patrons and drivers %}
     <thead>
         <tr>
             {% for attribute in orders[0].keys() %}
@@ -23,7 +23,41 @@
         </tr>
         {% endfor %}
     </tbody>
-{% endif %}
 </table>
 
+<h3>Add Order</h3>
+<div id="add">
+    <form id="addOrder" action="/add_order/" method="post">
+        <fieldset>
+            <label for="ordered_by">Ordered_by:</label>
+            <select name="ordered_by" id="ordered_by">
+                {% for patron in patrons %}
+                    <option value="{{ patron.account_id }}">{{ patron.account_id }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="delivery_by">Delivery_by:</label>
+            <select name="delivery_by" id="delivery_by">
+                {% for driver in drivers %}
+                    <option value="{{ driver.account_id }}">{{ driver.account_id }}</option>
+                {% endfor %}
+            </select>
+            
+            <label for="order_time">order_time:</label>
+            <input type="text" id="order_time" name="order_time">
+
+            <label for="total_price">total_price:</label>
+            <input type="number" steps="0.01" min=0 id="total_price" name="total_price" required>    
+
+            <label for="order_status">order_status:</label>
+            <input type="text" id="order_status" name="order_status" required>    
+
+            <input type="submit" value="Submit" name="Add_Order" class="button" type="button">
+        </fieldset>
+    </form>
+
+
+{% else %}
+<h4>Either no drivers exist or no patrons exist.</h4>
+{% endif %}
 {% endblock %}

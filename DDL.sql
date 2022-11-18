@@ -62,8 +62,8 @@ CREATE TABLE orders (
     total_price DECIMAL(65, 2) NOT NULL,
     order_status VARCHAR(255) NOT NULL,
     PRIMARY KEY(order_id),
-    FOREIGN KEY(ordered_by) REFERENCES patrons(account_id),
-    FOREIGN KEY(delivery_by) REFERENCES drivers(account_id)
+    FOREIGN KEY(ordered_by) REFERENCES patrons(account_id) ON DELETE CASCADE,
+    FOREIGN KEY(delivery_by) REFERENCES drivers(account_id) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS foods;
@@ -77,7 +77,7 @@ CREATE TABLE foods (
     is_vegetarian TINYINT(1) NOT NULL,
     price DECIMAL(65, 2) NOT NULL,
     PRIMARY KEY(food_id),
-    FOREIGN KEY(order_id) REFERENCES orders(order_id),
+    FOREIGN KEY(order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
     FOREIGN KEY(made_by) REFERENCES chefs(account_id)
 );
 

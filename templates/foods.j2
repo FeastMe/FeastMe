@@ -4,7 +4,7 @@
 
 <h1>Foods</h1>
 <table>
-{% if foods %}
+{% if foods and orders %}
     <thead>
         <tr>
             {% for attribute in foods[0].keys() %}
@@ -23,7 +23,54 @@
         </tr>
         {% endfor %}
     </tbody>
-{% endif %}
 </table>
 
+
+<h3>Add Food</h3>
+<div id="add">
+    <form id="addFood" action="/add_food/" method="post">
+        <fieldset>
+            <label for="order_id">Order id:</label>
+            <select name="order_id" id="order_id">
+                {% for order in orders %}
+                    <option value="{{ order.order_id }}">{{ order.order_id }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="made_by">Made by:</label>
+            <select name="made_by" id="made_by">
+                {% for food_creator in food_creators %}
+                    <option value="{{ food_creator.account_id }}">{{ food_creator.account_id }}</option>
+                {% endfor %}
+            </select>
+            
+            <label for="food_name">food_name:</label>
+            <input type="text" id="food_name" name="food_name">
+
+            <label for="description">description:</label>
+            <input type="text" id="description" name="description" required>    
+
+            <label for="is_vegan">is_vegan:</label>
+            <select name="is_vegan" id="is_vegan">
+                    <option value="1">1</option>
+                    <option value="0">0</option>
+            </select>
+
+            <label for="is_vegetarian">is_vegetarian:</label>
+            <select name="is_vegetarian" id="is_vegetarian">
+                    <option value="1">1</option>
+                    <option value="0">0</option>
+            </select>
+
+            <label for="price">price:</label>
+            <input type="number" step="0.01" min=0 id="price" name="price" required>
+
+            <input type="submit" value="Submit" name="Add_Food" class="button" type="button">
+        </fieldset>
+    </form>
+
+
+{% else %}
+<h4>Either no foods exist or no order exists.</h4>
+{% endif %}
 {% endblock %}
