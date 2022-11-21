@@ -1,7 +1,10 @@
 {% extends 'base.j2' %}
 {% block content %}
 
-    <h1>Welcome to FeastMe!</h1>
-    <p>A food delivery ordering system that streamlines the order-prepare-deliver process. FeastMe aims for more accurate food orders, enables faster delivery times, and increases higher customer satisfaction.</p>
+    {# https://stackoverflow.com/questions/59478573/how-to-display-images-from-folder-in-python-html-and-flask #}
+    <div class="logo-transparent">
+        <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" id="logo">
+    </div>
+    {# <p>A food delivery ordering system that streamlines the order-prepare-deliver process. FeastMe aims for more accurate food orders, enables faster delivery times, and increases higher customer satisfaction.</p> #}
 
 {% endblock %}
