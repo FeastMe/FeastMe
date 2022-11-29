@@ -18,25 +18,25 @@
             {% for key in item.keys() %}
                 <td>{{ item[key] }} </td>
             {% endfor %}
-                <td><a href="edit_ingredient/{{ item.ingredient_id }}">Edit</a></td>
-                <td><a href="delete_ingredient/{{ item.ingredient_id }}">Delete</a></td>
+                <td><a href="edit_ingredient/{{ item.ingredient_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="delete_ingredient/{{ item.ingredient_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
 {# Date: 11/17/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
-<h3>Add Incredient</h3>
+<h3>Add Ingredient</h3>
 <div id="add">
     <form id="addIngredient" action="/add_ingredient/" method="post">
         <fieldset>
-            <label for="ingredient_name">ingredient_name:</label>
+            <label for="ingredient_name">Ingredient name:</label>
             <input type="text" id="ingredient_name" name="ingredient_name" required>
 
-            <label for="expiry_date">expiry_date:</label>
+            <label for="expiry_date">Expiry date:</label>
             <input type="text" id="expiry_date" name="expiry_date" required>
 
-            <label for="in_stock">in_stock:</label>
+            <label for="in_stock">In stock:</label>
             <select name="in_stock" id="in_stock">
                     <option value="1">1</option>
                     <option value="0">0</option>

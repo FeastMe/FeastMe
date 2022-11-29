@@ -18,8 +18,8 @@
             {% for key in item.keys() %}
                 <td>{{ item[key] }} </td>
             {% endfor %}
-                <td><a href="edit_patron/{{ item.account_id }}">Edit</a></td>
-                <td><a href="delete_patron/{{ item.account_id }}">Delete</a></td>
+                <td><a href="edit_patron/{{ item.account_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="delete_patron/{{ item.account_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>
@@ -31,29 +31,29 @@
 <div id="add">
     <form id="addPatron" action="/add_patron/" method="post">
         <fieldset>
-            <label for="patron_id">Patron's account id:</label>
+            <label for="patron_id">Patron's account ID:</label>
             <select name="patron_id" id="patron_id">
                 {% for patron in unassigned_patrons %}
                     <option value="{{ patron.account_id }}">{{ patron.account_id }}</option>
                 {% endfor %}
             </select>
 
-            <label for="street_number">street_number:</label>
+            <label for="street_number">Street number:</label>
             <input type="text" id="street_number" name="street_number">
 
-            <label for="street">street:</label>
+            <label for="street">Street:</label>
             <input type="text" id="street" name="street" required>    
 
-            <label for="unit_number">unit_number:</label>
+            <label for="unit_number">Unit number:</label>
             <input type="text" id="unit_number" name="unit_number">
 
-            <label for="city">city:</label>
+            <label for="city">City:</label>
             <input type="text" id="city" name="city" required>
 
-            <label for="state">state:</label>
+            <label for="state">State:</label>
             <input type="state" id="state" name="state" required>
                     
-            <label for="zip_code">zip_code:</label>
+            <label for="zip_code">Zip code:</label>
             <input type="zip_code" id="zip_code" name="zip_code" required>
 
             <input type="submit" value="Submit" name="Add_Patron" class="button" type="button">
@@ -74,8 +74,8 @@
             {% for key in item.keys() %}
                 <td>{{ item[key] }} </td>
             {% endfor %}
-                <td><a href="edit_patron/{{ item.account_id }}">Edit</a></td>
-                <td><a href="delete_patron/{{ item.account_id }}">Delete</a></td>
+                <td><a href="edit_patron/{{ item.account_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="delete_patron/{{ item.account_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>

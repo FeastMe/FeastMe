@@ -24,8 +24,8 @@
                 <td>{{ item[key] }} </td>
                 {% endif %}
             {% endfor %}
-                <td><a href="edit_account/{{ item.account_id }}">Edit</a></td>
-                <td><a href="delete_account/{{ item.account_id }}">Delete</a></td>
+                <td><a href="edit_account/{{ item.account_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="delete_account/{{ item.account_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>
@@ -36,26 +36,26 @@
 <div id="add">
     <form id="addAccount" action="/add_account/" method="post">
         <fieldset>
-            <label for="first_name">first name:</label>
+            <label for="first_name">First name:</label>
             <input type="text" id="first_name" name="first_name" required>
 
-            <label for="last_name">last name:</label>
+            <label for="last_name">Last name:</label>
             <input type="text" id="last_name" name="last_name" required>
 
-            <label for="email">email:</label>
+            <label for="email">Email:</label>
             <input type="text" id="email" name="email" required>
             <br><br>
-            <label for="password">password:</label>
+            <label for="password">Password:</label>
             <input type="text" id="password" name="password" required>    
 
             {# Citation for phone number input
             Date: 11/14/2022
             Source from MDN Web docs 
             URL: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel #}
-            <label for="phone_number">phone number:</label>
+            <label for="phone_number">Phone number:</label>
             <input type="tel" id="phone_number" name="phone_number" placeholder="Ex: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
 
-            <label for="account_type">type:</label>
+            <label for="account_type">Type:</label>
             <select name="account_type" id="account_type">
                     <option value="Patron">Patron</option>
                     <option value="Chef">Chef</option>

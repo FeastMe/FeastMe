@@ -18,8 +18,8 @@
             {% for key in item.keys() %}
                 <td>{{ item[key] }} </td>
             {% endfor %}
-                <td><a href="edit_order/{{ item.order_id }}">Edit</a></td>
-                <td><a href="delete_order/{{ item.order_id }}">Delete</a></td>
+                <td><a href="edit_order/{{ item.order_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="delete_order/{{ item.order_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>
@@ -29,27 +29,27 @@
 <div id="add">
     <form id="addOrder" action="/add_order/" method="post">
         <fieldset>
-            <label for="ordered_by">Ordered_by:</label>
+            <label for="ordered_by">Ordered by:</label>
             <select name="ordered_by" id="ordered_by">
                 {% for patron in patrons %}
                     <option value="{{ patron.account_id }}">{{ patron.account_id }}</option>
                 {% endfor %}
             </select>
 
-            <label for="delivery_by">Delivery_by:</label>
+            <label for="delivery_by">Delivery by:</label>
             <select name="delivery_by" id="delivery_by">
                 {% for driver in drivers %}
                     <option value="{{ driver.account_id }}">{{ driver.account_id }}</option>
                 {% endfor %}
             </select>
             
-            <label for="order_time">order_time:</label>
+            <label for="order_time">Order time:</label>
             <input type="text" id="order_time" name="order_time">
 
-            <label for="total_price">total_price:</label>
+            <label for="total_price">Total price:</label>
             <input type="number" steps="0.01" min=0 id="total_price" name="total_price" required>    
 
-            <label for="order_status">order_status:</label>
+            <label for="order_status">Order status:</label>
             <input type="text" id="order_status" name="order_status" required>    
 
             <input type="submit" value="Submit" name="Add_Order" class="button" type="button">

@@ -18,8 +18,8 @@
             {% for key in item.keys() %}
                 <td>{{ item[key] }} </td>
             {% endfor %}
-                <td><a href="edit_driver/{{ item.account_id }}">Edit</a></td>
-                <td><a href="delete_driver/{{ item.account_id }}">Delete</a></td>
+                <td><a href="edit_driver/{{ item.account_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="delete_driver/{{ item.account_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>
@@ -30,17 +30,17 @@
 <div id="add">
     <form id="addDriver" action="/add_driver/" method="post">
         <fieldset>
-            <label for="driver_id">Driver's account id:</label>
+            <label for="driver_id">Driver's account ID:</label>
             <select name="driver_id" id="driver_id">
                 {% for driver in unassigned_drivers %}
                     <option value="{{ driver.account_id }}">{{ driver.account_id }}</option>
                 {% endfor %}
             </select>
 
-            <label for="license_plate">license_plate:</label>
+            <label for="license_plate">License plate:</label>
             <input type="text" id="license_plate" name="license_plate" required>
 
-            <label for="license_number">license_number:</label>
+            <label for="license_number">License number:</label>
             <input type="text" id="license_number" name="license_number" required>    
             
             <input type="submit" value="Submit" name="Add_Driver" class="button" type="button">
@@ -61,8 +61,8 @@
             {% for key in item.keys() %}
                 <td>{{ item[key] }} </td>
             {% endfor %}
-                <td><a href="edit_driver/{{ item.account_id }}">Edit</a></td>
-                <td><a href="delete_driver/{{ item.account_id }}">Delete</a></td>
+                <td><a href="edit_driver/{{ item.account_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="delete_driver/{{ item.account_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>

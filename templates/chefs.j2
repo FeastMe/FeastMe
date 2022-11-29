@@ -18,8 +18,8 @@
             {% for key in item.keys() %}
                 <td>{{ item[key] }} </td>
             {% endfor %}
-                <td><a href="edit_chef/{{ item.account_id }}">Edit</a></td>
-                <td><a href="delete_chef/{{ item.account_id }}">Delete</a></td>
+                <td><a href="edit_chef/{{ item.account_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="delete_chef/{{ item.account_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>
@@ -31,17 +31,17 @@
 <div id="add">
     <form id="addChef" action="/add_chef/" method="post">
         <fieldset>
-            <label for="chef_id">Chef's account id:</label>
+            <label for="chef_id">Chef's account ID:</label>
             <select name="chef_id" id="chef_id">
                 {% for chef in unassigned_chefs %}
                     <option value="{{ chef.account_id }}">{{ chef.account_id }}</option>
                 {% endfor %}
             </select>
 
-            <label for="cert_number">cert_number:</label>
+            <label for="cert_number">Cert number:</label>
             <input type="text" id="cert_number" name="cert_number" required>
 
-            <label for="specialty">specialty:</label>
+            <label for="specialty">Specialty:</label>
             <input type="text" id="specialty" name="specialty" required>    
             
             <input type="submit" value="Submit" name="Add_Chef" class="button" type="button">
@@ -62,8 +62,8 @@
             {% for key in item.keys() %}
                 <td>{{ item[key] }} </td>
             {% endfor %}
-                <td><a href="edit_chef/{{ item.account_id }}">Edit</a></td>
-                <td><a href="delete_chef/{{ item.account_id }}">Delete</a></td>
+                <td><a href="edit_chef/{{ item.account_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="delete_chef/{{ item.account_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>

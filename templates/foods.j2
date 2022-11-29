@@ -18,8 +18,8 @@
             {% for key in item.keys() %}
                 <td>{{ item[key] }} </td>
             {% endfor %}
-                <td><a href="edit_food/{{ item.food_id }}">Edit</a></td>
-                <td><a href="delete_food/{{ item.food_id }}">Delete</a></td>
+                <td><a href="edit_food/{{ item.food_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="delete_food/{{ item.food_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>
@@ -30,7 +30,7 @@
 <div id="add">
     <form id="addFood" action="/add_food/" method="post">
         <fieldset>
-            <label for="order_id">Order id:</label>
+            <label for="order_id">Order ID:</label>
             <select name="order_id" id="order_id">
                 {% for order in orders %}
                     <option value="{{ order.order_id }}">{{ order.order_id }}</option>
@@ -44,25 +44,25 @@
                 {% endfor %}
             </select>
             
-            <label for="food_name">food_name:</label>
+            <label for="food_name">Food name:</label>
             <input type="text" id="food_name" name="food_name">
 
-            <label for="description">description:</label>
+            <label for="description">Description:</label>
             <input type="text" id="description" name="description" required>    
 
-            <label for="is_vegan">is_vegan:</label>
+            <label for="is_vegan">Is vegan:</label>
             <select name="is_vegan" id="is_vegan">
                     <option value="1">1</option>
                     <option value="0">0</option>
             </select>
 
-            <label for="is_vegetarian">is_vegetarian:</label>
+            <label for="is_vegetarian">Is vegetarian:</label>
             <select name="is_vegetarian" id="is_vegetarian">
                     <option value="1">1</option>
                     <option value="0">0</option>
             </select>
 
-            <label for="price">price:</label>
+            <label for="price">Price:</label>
             <input type="number" step="0.01" min=0 id="price" name="price" required>
 
             <input type="submit" value="Submit" name="Add_Food" class="button" type="button">

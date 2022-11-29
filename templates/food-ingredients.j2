@@ -18,8 +18,8 @@
             {% for key in item.keys() %}
                 <td>{{ item[key] }} </td>
             {% endfor %}
-                <td><a href="edit_foods_ingredients/{{ item.f_has_i_id }}">Edit</a></td>
-                <td><a href="delete_foods_ingredients/{{ item.f_has_i_id }}">Delete</a></td>
+                <td><a href="edit_foods_ingredients/{{ item.f_has_i_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="delete_foods_ingredients/{{ item.f_has_i_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>
