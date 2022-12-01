@@ -68,7 +68,18 @@
             <input type="submit" value="Submit" name="Add_Food" class="button" type="button">
         </fieldset>
     </form>
+</div>
 
+<h3>Search Food</h3>
+<div id="search">
+    <form id="searchFood" action="/search_food/" method="get">
+        <fieldset>
+            <label for="search_phrase">Search Phrase:</label>
+            <input type="text" step="0.01" min=0 id="search_phrase" name="search_phrase" required>
+            <input type="submit" value="Search" name="Search_Food" class="button" type="button">
+        </fieldset>
+    </form>
+</div>
 
 {% else %}
 <h4>Either no foods exist or no order exists.</h4>

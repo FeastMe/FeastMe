@@ -494,6 +494,43 @@ def add_food():
 
             return redirect('/foods')
 
+@app.route('/search_food/', methods=['GET'])
+def search_food():
+    # Search food item
+    if request.method == "GET":
+        search_query = request.args.get("search_phrase")
+        search_query = "%" + search_query + "%"
+        query = "SELECT * FROM foods WHERE foods.food_name LIKE '%s' OR foods.description LIKE '%s';" % (search_query, search_query)
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        search_result = cur.fetchall()
+        return render_template('search_food.j2', search_result = search_result)
+        #return query
+    '''
+    if request.method == "GET":
+        query_args = request.args
+        query_args.get("search_phrase")
+        search_query = f"%{str(query_args.get("search_phrase"))}%"
+        query = "SELECT * FROM foods WHERE foods.foods_name LIKE %s OR foods.description LIKE %s;" % (search_query, search_query)
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        search_result = cur.fetchall() 
+
+        return render_template('search_food.js', search_result = search_result)
+    '''
+    '''
+    if reqeust.method == "POST":
+        if request.form.get("Search_Food"):
+            search_term = request.form['search_term']
+            search_query = f"%{search_term}%"
+            query = "SELECT * FROM foods WHERE foods.foods_name LIKE %s OR foods.description LIKE %s;"
+            cur = mysql.connection.cursor()
+            cur.execute(query)
+            search_result = cur.fetchall() 
+
+            return render_template('search_food.js', search_result = search_result)
+        '''
+
 ########################################
 # CRUD on foods_has_ingredients entity.#
 ########################################
