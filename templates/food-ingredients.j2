@@ -4,7 +4,7 @@
 
 <h1>Foods & Ingredients</h1>
 <table>
-{% if foods_ingredients %}
+{% if foods_ingredients and foods and ingredients%}
     <thead>
         <tr>
             {% for attribute in foods_ingredients[0].keys() %}
@@ -27,7 +27,29 @@
         </tr>
         {% endfor %}
     </tbody>
-{% endif %}
 </table>
 
+<h3>Add Foods and Ingredients</h3>
+<div id="add">
+    <form id="addFoodsIngredients" action="/add_foods_ingredients/" method="post">
+        <fieldset>
+            <label for="food_item">Food Item:</label>
+            <select name="food_item" id="food_item">
+                {% for food in foods %}
+                    <option value="{{ food.food_id }}">{{ food.food_id }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="ingredient_item">Ingredient Item:</label>
+            <select name="ingredient_item" id="ingredient_item">
+                {% for ingredient in ingredients %}
+                    <option value="{{ ingredient.ingredient_id }}">{{ ingredient.ingredient_id }}</option>
+                {% endfor %}
+            </select>   
+
+            <input type="submit" value="Submit" name="Add_Foods_Ingredients" class="button" type="button">
+        </fieldset>
+    </form>
+
+{% endif %}
 {% endblock %}

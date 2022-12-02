@@ -1,0 +1,52 @@
+{% extends 'base.j2' %}
+{% block content %}
+
+<html>
+<body>
+    <div>
+        <h1>Editing Food & Ingredients</h1>
+        <table>
+            {% if food_ingredient and foods and ingredients%}
+                <thead>
+                    <tr>
+                        {% for key in food_ingredient[0].keys() %}
+                            <th>{{ key }}</th>
+                        {% endfor %} 
+                    </tr>
+                <thead>
+                <tbody>
+                    {% for item in food_ingredient %}
+                    <tr>
+                        {% for key in item.keys() %}
+                            <td>{{ item[key] }}</td> 
+                        {% endfor %} 
+                    </tr> 
+                    {% endfor %}  
+        </table>
+        <div id="edit">
+            <form id="editFoodsIngredients" action="/edit_foods_ingredients/{{food_ingredient[0].f_has_i_id}}" method="post">
+                <h3>Edit Foods & Ingredients</h3>
+                <fieldset>
+                    <input type="hidden" value="{{food_ingredient[0].f_has_i_id}}" id="f_has_i_id" name="f_has_i_id" required>
+                    
+                    <label for="food_item"><b>Food Item:<b></label>
+                    <select name="food_item" id="food_item">
+                        {% for food in foods %}
+                            <option value="{{ food.food_id }}" {% if food.food_id == food_ingredient[0].food_id %} selected = "selected" {% endif %}>{{ food.food_id }} </option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="ingredient_item"><b>Ingredient Item:<b></label>
+                    <select name="ingredient_item" id="ingredient_item">
+                        {% for ingredient in ingredients %}
+                            <option value="{{ ingredient.ingredient_id }}" {% if ingredient.ingredient_id == food_ingredient[0].ingredient_id %} selected = "selected" {% endif %}>{{ ingredient.ingredient_id }} </option>
+                        {% endfor %}
+                    </select>
+                    
+                    <input type="submit" value="Save" name="Edit_Foods_Ingredients" class="button">
+                    <a href='/foodsingredients'><input class="button" type="button" value="Cancel"></a>
+                </fieldset>                   
+            </form>
+{% endif %}
+</html>
+{% endblock %}

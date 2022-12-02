@@ -545,12 +545,50 @@ def foods_has_ingredients():
         cur.execute(query)
         foods_ingredients = cur.fetchall()
 
-        return render_template('food-ingredients.j2', foods_ingredients = foods_ingredients)
+        query = "SELECT * FROM foods;"
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        foods = cur.fetchall()
+
+        query = "SELECT * FROM ingredients;"
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        ingredients = cur.fetchall()
+
+        return render_template('food-ingredients.j2', foods_ingredients = foods_ingredients, foods = foods, ingredients = ingredients)
 
 @app.route('/edit_foods_ingredients/<int:f_has_i_id>', methods=['POST', 'GET'])
 def edit_foods_ingredients(f_has_i_id):
     # UPDATE foods_has_ingredients
-    pass
+    if request.method == "GET":
+        query = "SELECT * FROM foods_has_ingredients WHERE f_has_i_id = %s;" % (f_has_i_id)
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        food_ingredient = cur.fetchall()
+
+        query = "SELECT * FROM foods;"
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        foods = cur.fetchall()
+
+        query = "SELECT * FROM ingredients;"
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        ingredients = cur.fetchall()
+
+        return render_template('edit_food_ingredients.j2', food_ingredient = food_ingredient, foods = foods, ingredients = ingredients)
+
+    if request.method == "POST":
+        if request.form.get("Edit_Foods_Ingredients"):
+            food_item = request.form["food_item"]
+            ingredient_item = request.form["ingredient_item"]
+
+            query = "UPDATE foods_has_ingredients SET foods_has_ingredients.food_id = %s, foods_has_ingredients.ingredient_id = %s WHERE foods_has_ingredients.f_has_i_id = %s;"
+
+            cur = mysql.connection.cursor()
+            cur.execute(query, (food_item, ingredient_item, f_has_i_id))
+            mysql.connection.commit()
+            return redirect("/foodsingredients")
 
 @app.route('/delete_foods_ingredients/<int:f_has_i_id>')
 def delete_foods_ingredients(f_has_i_id):
@@ -564,7 +602,17 @@ def delete_foods_ingredients(f_has_i_id):
 @app.route('/add_foods_ingredients/', methods=['POST'])
 def add_foods_ingredients():
     # CREATE foods_has_ingredients
-    pass
+    if request.method == "POST":
+        if request.form.get("Add_Foods_Ingredients"):
+            food_item = request.form["food_item"]
+            ingredient_item = request.form["ingredient_item"]
+
+            query = "INSERT INTO foods_has_ingredients (food_id, ingredient_id) VALUES (%s, %s);"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (food_item, ingredient_item))
+            mysql.connection.commit()
+
+            return redirect('/foodsingredients')
 
 ##############################
 # CRUD on ingredients entity.#
