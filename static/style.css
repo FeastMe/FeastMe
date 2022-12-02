@@ -1,8 +1,8 @@
 /*
 Citation for background diagonal design
 Date: 11/21/2022
-Source from codepen
-URL: ttps://codepen.io/amite/pen/rPQWaj
+Adapted from codepen sample code.
+Source URL: https://codepen.io/amite/pen/rPQWaj
 */
 
 body {
@@ -41,8 +41,8 @@ h1, h3, h4 {
 /*
 Citation for centering image on page
 Date: 11/21/2022
-Source from stackoverflow
-URL: https://stackoverflow.com/questions/20878342/making-image-align-center-of-screen-in-html
+Copied and adapted from stackoverflow post by Surjith S M
+Source URL: https://stackoverflow.com/questions/20878342/making-image-align-center-of-screen-in-html
 */ 
 .logo-transparent {
   display: flex;
@@ -64,8 +64,8 @@ URL: https://stackoverflow.com/questions/20878342/making-image-align-center-of-s
 /* 
 Citation for table design (applied to table tag)
 Date: 11/28/2022
-Source from dev.to 
-URL: https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l
+Adapated from dev.to table tag code
+Source URL: https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l
 */
 table {
   border-collapse: collapse;
@@ -120,8 +120,8 @@ select {
 /* 
 Citation for pill button design
 Date: 11/10/2022
-Source from W3Schools 
-URL: https://www.w3schools.com/howto/howto_css_pill_button.asp
+Adapted from W3Schools code
+Source URL: https://www.w3schools.com/howto/howto_css_pill_button.asp
 */
 
 .button {
