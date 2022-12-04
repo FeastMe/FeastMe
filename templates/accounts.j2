@@ -5,6 +5,9 @@
 
 
 <h1>Accounts</h1>
+<h4>Deleting Patron accounts will affect Patrons, Orders, and Foods pages.</h4>
+<h4>Deleting Driver accounts will affect Drivers, Orders, and Foods pages.</h4>
+<h4>To delete Chef accounts, you must first delete rows from Foods page where made_by matches the account number.</h4>
 <table>
 {% if accounts %}
     <thead>
@@ -37,6 +40,7 @@
 
 {# Date: 11/10/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
 <h3>Add Account</h3>
+<h4>Email address must be unique.</h4>
 <div id="add">
     <form id="addAccount" action="/add_account/" method="post">
         <fieldset>

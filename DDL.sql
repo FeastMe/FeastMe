@@ -86,7 +86,7 @@ CREATE TABLE ingredients (
     ingredient_id INT(11) NOT NULL AUTO_INCREMENT,
     ingredient_name VARCHAR(255) UNIQUE NOT NULL,
     expiry_date DATE NOT NULL,
-    in_stock TINYINT(1) NOT NULL,
+    in_stock ENUM("Yes", "No") NOT NULL,
     PRIMARY KEY(ingredient_id)
 );
 
@@ -148,16 +148,16 @@ INSERT INTO foods(order_id, made_by, food_name, description, is_vegan, is_vegeta
 (2, NULL, 'Coke', 'Cold coke', "Yes", "Yes", 4.15);
 
 INSERT INTO ingredients(ingredient_name, expiry_date, in_stock) VALUES
-('salmon', '2022-10-22', 1),
-('brussel sprouts',	'2022-10-25', 0),
-('lamb chops', '2022-10-23', 1),
-('orecchiette pasta', '2023-12-09', 1),
-('carrots',	'2022-11-19', 0),
-('wild rice', '2024-04-15',	1),
-('oyster mushroom',	'2022-11-02',0),
-('blueberry', '2022-10-23',	0),
-('olive oil', '2025-06-18',	1),
-('garlic', '2023-01-14', 1);
+('salmon', '2022-10-22', "Yes"),
+('brussel sprouts',	'2022-10-25', "No"),
+('lamb chops', '2022-10-23', "Yes"),
+('orecchiette pasta', '2023-12-09', "Yes"),
+('carrots',	'2022-11-19', "No"),
+('wild rice', '2024-04-15',	"Yes"),
+('oyster mushroom',	'2022-11-02',"No"),
+('blueberry', '2022-10-23',	"No"),
+('olive oil', '2025-06-18',	"Yes"),
+('garlic', '2023-01-14', "Yes");
 
 INSERT INTO foods_has_ingredients(food_id, ingredient_id) VALUES
 (1, 6),

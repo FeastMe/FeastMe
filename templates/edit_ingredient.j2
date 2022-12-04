@@ -37,7 +37,14 @@
                     <input type="test" value="{{ingredient[0].expiry_date}}" id="expiry_date" name="expiry_date" required>
                     
                     <label for="in_stock">In stock:</label>
-                    <input type="number" value="{{ingredient[0].in_stock}}" id="in_stock" name="in_stock" required>
+                    <select name="in_stock" id="in_stock">
+                        <option value="Yes" {% if ingredient[0].in_stock == "Yes" %} selected = "selected" {% endif %}>Yes</option>
+                        <option value="No"  {% if ingredient[0].in_stock == "No" %} selected = "selected" {% endif %}>No</option>
+                    </select>
+
+
+                    {# <label for="in_stock">In stock:</label>
+                    <input type="number" value="{{ingredient[0].in_stock}}" id="in_stock" name="in_stock" required> #}
                     
                     <br><br>
 

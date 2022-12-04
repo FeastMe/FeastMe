@@ -3,6 +3,7 @@
 {% block content %}
 
 <h1>Ingredients</h1>
+<h4>Deleting Ingredient items will affect Foods & Ingredients page.</h4>
 <table>
 {% if ingredients %}
     <thead>
@@ -43,8 +44,8 @@
 
             <label for="in_stock">In stock:</label>
             <select name="in_stock" id="in_stock">
-                    <option value="1">1</option>
-                    <option value="0">0</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
             </select>
             
             <input type="submit" value="Submit" name="Add_Ingredient" class="button" type="button">

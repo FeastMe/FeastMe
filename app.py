@@ -57,20 +57,24 @@ def edit_account(account_id):
     
     if request.method == 'POST':
         if request.form.get('Edit_Account'):
-            account_id = request.form["account_id"]
-            first_name = request.form["first_name"]
-            last_name = request.form["last_name"]
-            email = request.form["email"]
-            password = request.form["password"]
-            phone_number = request.form["phone_number"]
-            account_type = request.form["account_type"]
+            try :
+                account_id = request.form["account_id"]
+                first_name = request.form["first_name"]
+                last_name = request.form["last_name"]
+                email = request.form["email"]
+                password = request.form["password"]
+                phone_number = request.form["phone_number"]
+                account_type = request.form["account_type"]
 
-            query = "UPDATE accounts SET accounts.first_name = %s, accounts.last_name = %s, accounts.email = %s, accounts.password = %s, accounts.phone_number = %s, accounts.type = %s WHERE accounts.account_id = %s;"
-            cur = mysql.connection.cursor()
-            cur.execute(query, (first_name, last_name, email, password, phone_number, account_type, account_id))
-            mysql.connection.commit()
+                query = "UPDATE accounts SET accounts.first_name = %s, accounts.last_name = %s, accounts.email = %s, accounts.password = %s, accounts.phone_number = %s, accounts.type = %s WHERE accounts.account_id = %s;"
+                cur = mysql.connection.cursor()
+                cur.execute(query, (first_name, last_name, email, password, phone_number, account_type, account_id))
+                mysql.connection.commit()
 
-            return redirect('/accounts')
+                return redirect('/accounts')
+            
+            except:
+                return render_template('duplicate_acc_error.j2')
 
 @app.route('/delete_account/<int:account_id>')
 def delete_account(account_id):
@@ -83,26 +87,30 @@ def delete_account(account_id):
         return redirect('/accounts')
 
     except:
-        return "<h3>Not all entities have been implemented yet and you are trying to delete an account that is bound by foreign key constraints.</h3>"
+        return render_template('delete_chef_error.j2')
 
 @app.route('/add_account/', methods=['POST'])
 def add_account():
     # CREATE account
     if request.method == 'POST':
         if request.form.get("Add_Account"):
-            first_name = request.form["first_name"]
-            last_name = request.form["last_name"]
-            email = request.form["email"]
-            password = request.form["password"]
-            phone_number = request.form["phone_number"]
-            account_type = request.form["account_type"]
+            try:
+                first_name = request.form["first_name"]
+                last_name = request.form["last_name"]
+                email = request.form["email"]
+                password = request.form["password"]
+                phone_number = request.form["phone_number"]
+                account_type = request.form["account_type"]
 
-            query = "INSERT INTO accounts(first_name, last_name, email, password, phone_number, type) VALUES (%s, %s, %s, %s, %s, %s);"
-            cur = mysql.connection.cursor()
-            cur.execute(query, (first_name, last_name, email, password, phone_number, account_type))
-            mysql.connection.commit()
+                query = "INSERT INTO accounts(first_name, last_name, email, password, phone_number, type) VALUES (%s, %s, %s, %s, %s, %s);"
+                cur = mysql.connection.cursor()
+                cur.execute(query, (first_name, last_name, email, password, phone_number, account_type))
+                mysql.connection.commit()
 
-            return redirect('/accounts')
+                return redirect('/accounts')
+            
+            except:
+                return render_template('/duplicate_acc_error.j2')
 
 ##########################
 # CRUD on patrons entity.#
@@ -307,11 +315,15 @@ def edit_chef(account_id):
 @app.route('/delete_chef/<int:account_id>')
 def delete_chef(account_id):
     # DELETE chef
-    query = f"DELETE FROM chefs WHERE account_id = '%s';"
-    cur = mysql.connection.cursor()
-    cur.execute(query, (account_id,))
-    mysql.connection.commit()
-    return redirect('/chefs')
+    try:
+        query = f"DELETE FROM chefs WHERE account_id = '%s';"
+        cur = mysql.connection.cursor()
+        cur.execute(query, (account_id,))
+        mysql.connection.commit()
+        return redirect('/chefs')
+
+    except:
+        return render_template('delete_chef_error.j2')
 
 @app.route('/add_chef/', methods=['POST'])
 def add_chef():

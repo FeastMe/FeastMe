@@ -3,6 +3,7 @@
 {% block content %}
 
 <h1>Foods</h1>
+<h4>Deleting Food items will affect Foods & Ingredients page.</h4>
 <table>
 {% if foods %}
     <thead>
@@ -57,14 +58,14 @@
 
             <label for="is_vegan">Is vegan:</label>
             <select name="is_vegan" id="is_vegan">
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
             </select>
 
             <label for="is_vegetarian">Is vegetarian:</label>
             <select name="is_vegetarian" id="is_vegetarian">
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
             </select>
 
             <label for="price">Price:</label>
@@ -81,7 +82,7 @@
         <fieldset>
             <label for="search_phrase">Search Phrase:</label>
             <input type="text" step="0.01" min=0 id="search_phrase" name="search_phrase" required>
-            <input type="submit" value="Search" name="Search_Food" class="button" type="button">
+            <input type="submit" value="Search" class="button" type="button">
         </fieldset>
     </form>
 </div>
