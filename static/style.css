@@ -1,0 +1,143 @@
+/*
+Citation for background diagonal design
+Date: 11/21/2022
+Adapted from codepen sample code.
+Source URL: https://codepen.io/amite/pen/rPQWaj
+*/
+
+body {
+  background-color: #7644ff;
+  background-image: -webkit-linear-gradient(150deg, #7644ff 35%, #6936F5 35%);
+  min-height: 900px;
+  font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+  
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+nav{
+  padding-top: 20px;
+  text-align: center;
+}
+
+nav a {
+  color: #FCF7FF;
+  padding: 0px 15px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #FDB5FF;
+}
+
+h1, h3, h4 {
+  color: #dbcaf9;
+}
+
+/*
+Citation for centering image on page
+Date: 11/21/2022
+Copied and adapted from stackoverflow post by Surjith S M
+Source URL: https://stackoverflow.com/questions/20878342/making-image-align-center-of-screen-in-html
+*/ 
+.logo-transparent {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+#logo {
+  max-width: 40%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin:auto;
+}
+
+/* 
+Citation for table design (applied to table tag)
+Date: 11/28/2022
+Adapated from dev.to table tag code
+Source URL: https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l
+*/
+table {
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 25px 0;
+  min-width: 200px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+th {
+  background-color: lavender;
+  
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+    
+}
+
+td {
+  color: #FCF7FF;
+}
+
+.edit:hover {
+  color: #ffd34e;
+}
+
+.delete:hover {
+  color: #ff7272;
+
+}
+
+fieldset {
+    border: 1px solid slateblue;
+    background-color: lavender;
+  }
+
+input {
+    outline: 0;
+    border-width: 0 0 1.5px;
+    border-color: slateblue;
+    background-color: lavender; 
+    margin-right: 20px;
+  }
+
+select {
+  margin-right: 20px;
+}
+
+/* 
+Citation for pill button design
+Date: 11/10/2022
+Adapted from W3Schools code
+Source URL: https://www.w3schools.com/howto/howto_css_pill_button.asp
+*/
+
+.button {
+    border: none;
+    background-color: slateblue;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+  }
+
+.button:hover {
+    background-color: #967FF0;
+  }

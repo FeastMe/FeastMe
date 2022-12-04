@@ -1,0 +1,50 @@
+{% extends 'base.j2' %}
+{% block content %}
+
+<html>
+<body>
+    <div>
+        <h1>Editing Ingredient</h1>
+        <table>
+            {% if ingredient %}
+                <thead>
+                    <tr>
+                        {% for key in ingredient[0].keys() %}
+                            <th>{{ key }}</th>
+                        {% endfor %} 
+                    </tr>
+                <thead>
+                <tbody>
+                    {% for item in ingredient %}
+                    <tr>
+                        {% for key in item.keys() %}
+                            <td>{{ item[key] }}</td> 
+                        {% endfor %} 
+                    </tr> 
+                    {% endfor %} 
+            {% endif %} 
+        </table>
+        <div id="edit">
+            <form id="editIngredient" action="/edit_ingredient/{{ingredient[0].ingredient_id}}" method="post">
+                <h3>Edit Ingredient</h3>
+                <fieldset>
+                    <input type="hidden" value="{{ingredient[0].ingredient_id}}" id="ingredient_id" name="ingredient_id" required>
+                    
+                    <label for="ingredient_name">Ingredient name:</label>
+                    <input type="text" value="{{ingredient[0].ingredient_name}}" id="ingredient_name" name="ingredient_name" required>
+                    
+                    <label for="expiry_date">Expiry date:</label>
+                    <input type="test" value="{{ingredient[0].expiry_date}}" id="expiry_date" name="expiry_date" required>
+                    
+                    <label for="in_stock">In stock:</label>
+                    <input type="number" value="{{ingredient[0].in_stock}}" id="in_stock" name="in_stock" required>
+                    
+                    <br><br>
+
+                    <input type="submit" value="Save" name="Edit_Ingredient" class="button">
+                    <a href='/ingredients'><input class="button" type="button" value="Cancel"></a>
+                </fieldset>                   
+            </form>
+
+</html>
+{% endblock %}

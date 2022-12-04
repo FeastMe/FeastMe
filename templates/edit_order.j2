@@ -1,0 +1,51 @@
+{% extends 'base.j2' %}
+{% block content %}
+
+<html>
+<body>
+    <div>
+        <h1>Editing Order</h1>
+        <table>
+            {% if order %}
+                <thead>
+                    <tr>
+                        {% for key in order[0].keys() %}
+                            <th>{{ key }}</th>
+                        {% endfor %} 
+                    </tr>
+                <thead>
+                <tbody>
+                    {% for item in order %}
+                    <tr>
+                        {% for key in item.keys() %}
+                            <td>{{ item[key] }}</td> 
+                        {% endfor %} 
+                    </tr> 
+                    {% endfor %} 
+            {% endif %} 
+        </table>
+        <div id="edit">
+            <form id="editOrder" action="/edit_order/{{order[0].order_id}}" method="post">
+                <h3>Edit Order</h3>
+                <fieldset>
+                    <input type="hidden" value="{{order[0].order_id}}" id="order_id" name="order_id" required>
+                    
+                    <b>Ordered by:<b> {{order[0].ordered_by}}
+
+                    <b>Delivery by:<b> {{order[0].delivery_by}}
+                    <br></br>
+                    <label for="order_time">Order time:</label>
+                    <input type="text" value="{{order[0].order_time}}" id="order_time" name="order_time" required>
+
+                    <label for="total_price">Total price:</label>
+                    <input type="number" step="0.01" min=0 value="{{order[0].total_price}}" id="total_price" name="total_price" required>
+
+                    <label for="order_status">Order status:</label>
+                    <input type="text" value="{{order[0].order_status}}" id="order_status" name="order_status" required>
+
+                    <input type="submit" value="Save" name="Edit_Order" class="button">
+                    <a href='/orders'><input class="button" type="button" value="Cancel"></a>
+                </fieldset>                   
+            </form>
+</html>
+{% endblock %}

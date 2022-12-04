@@ -1,0 +1,54 @@
+{# Date: 11/15/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/people.j2 #}
+{% extends 'base.j2' %}
+{% block content %}
+
+<h1>Ingredients</h1>
+<table>
+{% if ingredients %}
+    <thead>
+        <tr>
+            {% for attribute in ingredients[0].keys() %}
+                <th> {{ attribute }} </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in ingredients %}
+        <tr>
+            {% for key in item.keys() %}
+                <td>{{ item[key] }} </td>
+            {% endfor %}
+                {# Citation for favicons added to Edit and Delete columns
+                Date: 11/28/2022
+                Copied fontawesome website for each icon
+                Source URL: https://fontawesome.com/icons/pen-to-square?s=regular&f=classic & https://fontawesome.com/icons/trash?s=regular&f=classic #}
+                <td><a href="edit_ingredient/{{ item.ingredient_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="delete_ingredient/{{ item.ingredient_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{# Date: 11/17/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
+<h3>Add Ingredient</h3>
+<div id="add">
+    <form id="addIngredient" action="/add_ingredient/" method="post">
+        <fieldset>
+            <label for="ingredient_name">Ingredient name:</label>
+            <input type="text" id="ingredient_name" name="ingredient_name" required>
+
+            <label for="expiry_date">Expiry date:</label>
+            <input type="text" id="expiry_date" name="expiry_date" required>
+
+            <label for="in_stock">In stock:</label>
+            <select name="in_stock" id="in_stock">
+                    <option value="1">1</option>
+                    <option value="0">0</option>
+            </select>
+            
+            <input type="submit" value="Submit" name="Add_Ingredient" class="button" type="button">
+        </fieldset>
+    </form>
+
+{% endif %}
+{% endblock %}

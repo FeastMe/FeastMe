@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeastMe</title>
+    <link rel="stylesheet" href="/static/style.css" type="text/css"/>
+    <link rel="icon" type="image/png" href="/static/images/favicon-32x32.png" sizes="32x32" />
+    {# Citation for website font
+    Date: 11/28/2022
+    Copied from google fonts 
+    Source URL: https://fonts.googleapis.com #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans+Condensed&display=swap" rel="stylesheet">
+    {# Citation for favicons added to Edit and Delete columns
+    Date: 11/28/2022
+    Copied fontawesome personal email
+    Source URL: https://kit.fontawesome.com/ #}
+    <script src="https://kit.fontawesome.com/b363adb4fa.js" crossorigin="anonymous"></script>    
+</head>
+
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a> 
+        <a href="{{ url_for('accounts') }}">Accounts</a> 
+        <a href="{{ url_for('patrons') }}">Patrons</a> 
+        <a href="{{ url_for('chefs') }}">Chefs</a> 
+        <a href="{{ url_for('drivers') }}">Drivers</a> 
+        <a href="{{ url_for('orders') }}">Orders</a> 
+        <a href="{{ url_for('foods') }}">Foods</a> 
+        <a href="{{ url_for('foods_has_ingredients') }}">Foods & Ingredients</a> 
+        <a href="{{ url_for('ingredients') }}">Ingredients</a> 
+    </nav>
+
+
+    {% block content %}
+    {% endblock %}
+
+    {% block script %}
+    {% endblock %}
+</body>
+</html>

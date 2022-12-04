@@ -1,0 +1,55 @@
+{# Date: 11/15/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/people.j2 #}
+{% extends 'base.j2' %}
+{% block content %}
+
+<h1>Foods & Ingredients</h1>
+<table>
+{% if foods_ingredients and foods and ingredients%}
+    <thead>
+        <tr>
+            {% for attribute in foods_ingredients[0].keys() %}
+                <th> {{ attribute }} </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in foods_ingredients %}
+        <tr>
+            {% for key in item.keys() %}
+                <td>{{ item[key] }} </td>
+            {% endfor %}
+                {# Citation for favicons added to Edit and Delete columns
+                Date: 11/28/2022
+                Copied fontawesome website for each icon
+                Source URL: https://fontawesome.com/icons/pen-to-square?s=regular&f=classic & https://fontawesome.com/icons/trash?s=regular&f=classic #}
+                <td><a href="edit_foods_ingredients/{{ item.f_has_i_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="delete_foods_ingredients/{{ item.f_has_i_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Add Foods and Ingredients</h3>
+<div id="add">
+    <form id="addFoodsIngredients" action="/add_foods_ingredients/" method="post">
+        <fieldset>
+            <label for="food_item">Food Item:</label>
+            <select name="food_item" id="food_item">
+                {% for food in foods %}
+                    <option value="{{ food.food_id }}">{{ food.food_id }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="ingredient_item">Ingredient Item:</label>
+            <select name="ingredient_item" id="ingredient_item">
+                {% for ingredient in ingredients %}
+                    <option value="{{ ingredient.ingredient_id }}">{{ ingredient.ingredient_id }}</option>
+                {% endfor %}
+            </select>   
+
+            <input type="submit" value="Submit" name="Add_Foods_Ingredients" class="button" type="button">
+        </fieldset>
+    </form>
+
+{% endif %}
+{% endblock %}

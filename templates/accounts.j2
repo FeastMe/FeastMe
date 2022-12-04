@@ -1,0 +1,74 @@
+{# Date: 11/10/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/people.j2 #}
+
+{% extends 'base.j2' %}
+{% block content %}
+
+
+<h1>Accounts</h1>
+<table>
+{% if accounts %}
+    <thead>
+        <tr>
+            {% for attribute in accounts[0].keys() %}
+                <th> {{ attribute }} </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in accounts %}
+        <tr>
+            {% for key in item.keys() %}
+                {% if key == 'type' %}
+                <td> {{ item[key]|title }}
+                {% else %}
+                <td>{{ item[key] }} </td>
+                {% endif %}
+            {% endfor %}
+                {# Citation for favicons added to Edit and Delete columns
+                Date: 11/28/2022
+                Copied fontawesome website for each icon
+                Source URL: https://fontawesome.com/icons/pen-to-square?s=regular&f=classic & https://fontawesome.com/icons/trash?s=regular&f=classic #}
+                <td><a href="edit_account/{{ item.account_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href="delete_account/{{ item.account_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{# Date: 11/10/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
+<h3>Add Account</h3>
+<div id="add">
+    <form id="addAccount" action="/add_account/" method="post">
+        <fieldset>
+            <label for="first_name">First name:</label>
+            <input type="text" id="first_name" name="first_name" required>
+
+            <label for="last_name">Last name:</label>
+            <input type="text" id="last_name" name="last_name" required>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+            <br><br>
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="password" required>    
+
+            {# Citation for phone number input
+            Date: 11/14/2022
+            Source from MDN Web docs 
+            URL: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel #}
+            <label for="phone_number">Phone number:</label>
+            <input type="tel" id="phone_number" name="phone_number" placeholder="Ex: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+
+            <label for="account_type">Type:</label>
+            <select name="account_type" id="account_type">
+                    <option value="Patron">Patron</option>
+                    <option value="Chef">Chef</option>
+                    <option value="Driver">Driver</option>
+            </select>
+            
+            <input type="submit" value="Submit" name="Add_Account" class="button" type="button">
+        </fieldset>
+    </form>
+
+{% endif %}
+{% endblock %}
