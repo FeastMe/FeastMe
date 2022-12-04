@@ -485,13 +485,29 @@ def edit_food(food_id):
         cur = mysql.connection.cursor()
         cur.execute(query)
         result = cur.fetchall()
-        return render_template('edit_food.j2', food = result)
+
+        query = "SELECT * FROM orders;"
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        orders = cur.fetchall()
+        
+        query = "SELECT * FROM chefs;"
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        food_creators = cur.fetchall()
+        food_creators = list(food_creators)
+        food_creators.insert(0, {'chef_id': None, 'account_id': None, 'cert_number': 'CN1865', 'specialty': 'sous chef'})
+        food_creators = tuple(food_creators)
+
+        return render_template('edit_food.j2', food = result, orders = orders, food_creators = food_creators)
     
     if request.method == "POST":
         if request.form.get("Edit_Food"):
             food_id = request.form["food_id"]
             order_id = request.form["order_id"]
             made_by = request.form["made_by"]
+            if made_by == "None":
+                made_by = None
             food_name = request.form["food_name"]
             description = request.form["description"]
             is_vegan = request.form["is_vegan"]
@@ -504,7 +520,6 @@ def edit_food(food_id):
             mysql.connection.commit()
 
             return redirect('/foods')
-
 
 @app.route('/delete_food/<int:food_id>')
 def delete_food(food_id):
@@ -546,31 +561,6 @@ def search_food():
         cur.execute(query)
         search_result = cur.fetchall()
         return render_template('search_food.j2', search_result = search_result)
-        #return query
-    '''
-    if request.method == "GET":
-        query_args = request.args
-        query_args.get("search_phrase")
-        search_query = f"%{str(query_args.get("search_phrase"))}%"
-        query = "SELECT * FROM foods WHERE foods.foods_name LIKE %s OR foods.description LIKE %s;" % (search_query, search_query)
-        cur = mysql.connection.cursor()
-        cur.execute(query)
-        search_result = cur.fetchall() 
-
-        return render_template('search_food.js', search_result = search_result)
-    '''
-    '''
-    if reqeust.method == "POST":
-        if request.form.get("Search_Food"):
-            search_term = request.form['search_term']
-            search_query = f"%{search_term}%"
-            query = "SELECT * FROM foods WHERE foods.foods_name LIKE %s OR foods.description LIKE %s;"
-            cur = mysql.connection.cursor()
-            cur.execute(query)
-            search_result = cur.fetchall() 
-
-            return render_template('search_food.js', search_result = search_result)
-        '''
 
 ########################################
 # CRUD on foods_has_ingredients entity.#

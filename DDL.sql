@@ -6,7 +6,7 @@
 /* Create Tables */
 DROP TABLE IF EXISTS accounts;
 CREATE TABLE accounts (
-    account_id INT(11) NOT NULL AUTO_INCREMENT,
+    account_id INT(11) AUTO_INCREMENT,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -73,8 +73,8 @@ CREATE TABLE foods (
     made_by INT(11) NULL,
     food_name VARCHAR(255) UNIQUE NOT NULL,
     description VARCHAR(255) NOT NULL,
-    is_vegan TINYINT(1) NOT NULL,
-    is_vegetarian TINYINT(1) NOT NULL,
+    is_vegan ENUM("Yes", "No") NOT NULL,
+    is_vegetarian ENUM("Yes", "No") NOT NULL,
     price DECIMAL(65, 2) NOT NULL,
     PRIMARY KEY(food_id),
     FOREIGN KEY(order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
@@ -139,13 +139,13 @@ INSERT INTO orders(ordered_by, delivery_by, order_time, total_price, order_statu
 (10, 9, '2022-10-20 05:45:00', '19.00', 'En Route');
 
 INSERT INTO foods(order_id, made_by, food_name, description, is_vegan, is_vegetarian, price) VALUES
-(5, 8, 'Wild Rice Salad', 'Tossed with roasted balsamic brussel sprouts, cranberries, feta, and maple butternut squash.', 0, 1, 11.75),
-(1, 8, 'Brown Butter Mushrooms', 'Puffed pastry filled sauteed oyster mushrooms in a brown butter sage sauce, topped with parsley.', 0, 1, 14.00),
-(4, 1, 'Miso Orrechiette', 'Orrechiette pasta in a creamy almond miso carrot sauce.', 1, 0, 12.50),
-(2, 3, 'Seared Dill Salmon', 'Seared wild atlantic salmon, coated in a dill sauce and tossed with lemon wild rice.', 0, 0, 17.99),
-(3, 1, 'Baked Lamb Chops', 'Herbed lamb chops with a spiced bluberry compote and hasselback potatoes',	0, 0, 21.50),
-(1, NULL, 'Bottled Water', 'Cold bottled water', 1, 1, 3.45),
-(2, NULL, 'Coke', 'Cold coke', 1, 1, 4.15);
+(5, 8, 'Wild Rice Salad', 'Tossed with roasted balsamic brussel sprouts, cranberries, feta, and maple butternut squash.', "No", "Yes", 11.75),
+(1, 8, 'Brown Butter Mushrooms', 'Puffed pastry filled sauteed oyster mushrooms in a brown butter sage sauce, topped with parsley.', "No", "Yes", 14.00),
+(4, 1, 'Miso Orrechiette', 'Orrechiette pasta in a creamy almond miso carrot sauce.', "Yes", "No", 12.50),
+(2, 3, 'Seared Dill Salmon', 'Seared wild atlantic salmon, coated in a dill sauce and tossed with lemon wild rice.', "No", "No", 17.99),
+(3, 1, 'Baked Lamb Chops', 'Herbed lamb chops with a spiced bluberry compote and hasselback potatoes',	"No", "No", 21.50),
+(1, NULL, 'Bottled Water', 'Cold bottled water', "Yes", "Yes", 3.45),
+(2, NULL, 'Coke', 'Cold coke', "Yes", "Yes", 4.15);
 
 INSERT INTO ingredients(ingredient_name, expiry_date, in_stock) VALUES
 ('salmon', '2022-10-22', 1),
