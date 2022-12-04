@@ -28,19 +28,19 @@ SELECT account_id, first_name, last_name, email, password, phone_number, type FR
 -- Get all patrons info
 SELECT patrons.account_id, CONCAT(first_name, ' ', last_name) AS patron_name, street_number, street, unit_number, city, state, zip_code FROM accounts
 INNER JOIN patrons ON patrons.account_id = accounts.account_id
-ORDER by patrons.patron_id;
+ORDER by patrons.account_id;
 -- Search patrons entity by patron ID
 SELECT patron_id, first_name, last_name, street_number, street, unit_number, city, state, zip FROM patrons WHERE patron_id = :patron_id_input
 -- Get all drivers info
 SELECT drivers.account_id, CONCAT(first_name, ' ', last_name) AS driver_name, license_plate, license_number FROM accounts
 INNER JOIN drivers ON drivers.account_id = accounts.account_id
-ORDER BY drivers.driver_id;
+ORDER BY drivers.account_id;
 -- Search drivers entity by license number
 SELECT driver_id, first_name, last_name, license_plate, license_number FROM drivers WHERE license_number = :license_number_input;
 -- Get all chefs info
 SELECT chefs.account_id, CONCAT(first_name, ' ', last_name) AS chef_name, cert_number, specialty, type FROM accounts
 INNER JOIN chefs ON chefs.account_id = accounts.account_id
-ORDER BY chefs.chef_id;
+ORDER BY chefs.account_id;
 -- Search chefs entity by certificate number
 SELECT chef_id, first_name, last_name, cert_number, specialty FROM chefs
 WHERE cert_number = :cert_number_input;

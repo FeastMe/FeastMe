@@ -4,7 +4,7 @@
 
 <h1>Foods</h1>
 <table>
-{% if foods and orders %}
+{% if foods %}
     <thead>
         <tr>
             {% for attribute in foods[0].keys() %}
@@ -27,9 +27,10 @@
         </tr>
         {% endfor %}
     </tbody>
+    {% endif %}
 </table>
 
-
+{% if foods or (orders and food_creators) %}
 <h3>Add Food</h3>
 <div id="add">
     <form id="addFood" action="/add_food/" method="post">
@@ -84,8 +85,7 @@
         </fieldset>
     </form>
 </div>
-
 {% else %}
-<h4>Either no foods exist or no order exists.</h4>
+<h4>Either no order exists or no chef exists.  Create orders and chefs in order to add to Foods.</h4>
 {% endif %}
 {% endblock %}

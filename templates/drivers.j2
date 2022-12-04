@@ -4,7 +4,7 @@
 
 <h1>Drivers</h1>
 <table>
-{% if drivers and unassigned_drivers %}
+{% if drivers %}
     <thead>
         <tr>
             {% for attribute in drivers[0].keys() %}
@@ -23,9 +23,13 @@
         </tr>
         {% endfor %}
     </tbody>
+    {% elif not drivers and not unassigned_drivers %}
+    <h4>Please create accounts first.</h4>
+    {% endif %}
 </table>
 
 {# Date: 11/17/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
+{% if unassigned_drivers %}
 <h3>Add Driver</h3>
 <div id="add">
     <form id="addDriver" action="/add_driver/" method="post">
@@ -47,34 +51,8 @@
         </fieldset>
     </form>
 
-{% elif drivers %}
-    <thead>
-        <tr>
-            {% for attribute in drivers[0].keys() %}
-                <th> {{ attribute }} </th>
-            {% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in drivers %}
-        <tr>
-            {% for key in item.keys() %}
-                <td>{{ item[key] }} </td>
-            {% endfor %}
-                {# Citation for favicons added to Edit and Delete columns
-                Date: 11/28/2022
-                Copied fontawesome website for each icon
-                Source URL: https://fontawesome.com/icons/pen-to-square?s=regular&f=classic & https://fontawesome.com/icons/trash?s=regular&f=classic #}
-                <td><a href="edit_driver/{{ item.account_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
-                <td><a href="delete_driver/{{ item.account_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
 
-</table>
+{% elif drivers and not unassigned_drivers %}
 <h4>All driver accounts have been accounted for.  If you want to add another driver, first to go the Accounts tab above and create a driver account.</h4>
-
-{% else %}
-<h4>Please create accounts first.</h4>
 {% endif %}
 {% endblock %}

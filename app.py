@@ -113,7 +113,7 @@ def patrons():
     if request.method == 'GET':
         query = "SELECT patrons.account_id, CONCAT(first_name, ' ', last_name) AS patron_name, street_number, street, unit_number, city, state, zip_code FROM accounts\
         INNER JOIN patrons ON patrons.account_id = accounts.account_id\
-        ORDER by patrons.patron_id;"
+        ORDER by patrons.account_id;"
         cur = mysql.connection.cursor()
         cur.execute(query)
         patrons = cur.fetchall()
@@ -194,7 +194,7 @@ def drivers():
     if request.method == 'GET':
         query = "SELECT drivers.account_id, CONCAT(first_name, ' ', last_name) AS driver_name, license_plate, license_number FROM accounts\
         INNER JOIN drivers ON drivers.account_id = accounts.account_id\
-        ORDER BY drivers.driver_id;"
+        ORDER BY drivers.account_id;"
         cur = mysql.connection.cursor()
         cur.execute(query)
         drivers = cur.fetchall()
@@ -266,7 +266,7 @@ def chefs():
     if request.method == 'GET':
         query = "SELECT chefs.account_id, CONCAT(first_name, ' ', last_name) AS chef_name, cert_number, specialty, type FROM accounts\
         INNER JOIN chefs ON chefs.account_id = accounts.account_id\
-        ORDER BY chefs.chef_id;"
+        ORDER BY chefs.account_id;"
         cur = mysql.connection.cursor()
         cur.execute(query)
         chefs = cur.fetchall()

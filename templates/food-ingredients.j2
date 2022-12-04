@@ -4,7 +4,7 @@
 
 <h1>Foods & Ingredients</h1>
 <table>
-{% if foods_ingredients and foods and ingredients%}
+{% if foods_ingredients %}
     <thead>
         <tr>
             {% for attribute in foods_ingredients[0].keys() %}
@@ -27,8 +27,10 @@
         </tr>
         {% endfor %}
     </tbody>
+    {% endif %}
 </table>
 
+{% if foods and ingredients %}
 <h3>Add Foods and Ingredients</h3>
 <div id="add">
     <form id="addFoodsIngredients" action="/add_foods_ingredients/" method="post">
@@ -50,6 +52,7 @@
             <input type="submit" value="Submit" name="Add_Foods_Ingredients" class="button" type="button">
         </fieldset>
     </form>
-
+{% elif not foods or not ingredients %}
+<h4>Either no foods exists or no ingredients exists.  Please create them first.</h4>
 {% endif %}
 {% endblock %}

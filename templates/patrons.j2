@@ -4,7 +4,7 @@
 
 <h1>Patrons</h1>
 <table>
-{% if patrons and unassigned_patrons%}
+{% if patrons %}
     <thead>
         <tr>
             {% for attribute in patrons[0].keys() %}
@@ -27,10 +27,14 @@
         </tr>
         {% endfor %}
     </tbody>
+    {% elif not patrons and not unassigned_patrons %}
+    <h4>Please create accounts first.</h4>
+    {% endif %}
 </table>
 
 
 {# Date: 11/17/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
+{% if unassigned_patrons %}
 <h3>Add Patron</h3>
 <div id="add">
     <form id="addPatron" action="/add_patron/" method="post">
@@ -64,7 +68,7 @@
         </fieldset>
     </form>
 
-{% elif patrons %}
+{# {% elif patrons %}
     <thead>
         <tr>
             {% for attribute in patrons[0].keys() %}
@@ -85,9 +89,9 @@
     </tbody>
 
 </table>
-<h4>All patron accounts have been accounted for.  If you want to add another patron, first to go the Accounts tab above and create a patron account.</h4>
+#}
 
-{% else %}
-<h4>Please create accounts first.</h4>
+{% elif patrons and not unassigned_patrons %}
+<h4>All patron accounts have been accounted for. If you want to add another patron, first to go the Accounts tab above and create a patron account.</h4>
 {% endif %}
 {% endblock %}
