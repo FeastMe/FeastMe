@@ -1,3 +1,8 @@
+{# Citation for creating tables in Jinja:
+Date: 11/10/2022 
+Sourced from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app 
+URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/people.j2 #}
+
 {% extends 'base.j2' %}
 {% block content %}
 
@@ -24,6 +29,12 @@
                     {% endfor %} 
             {% endif %} 
         </table>
+
+{# Citation for creating a form for CRUD operations in Jinja:
+Date: 11/10/2022
+Sourced from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app
+URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
+        
         <div id="edit">
             <form id="editAccount" action="/edit_account/{{account[0].account_id}}" method="post">
                 <h3>Edit Account</h3>
@@ -48,14 +59,15 @@
                     Date: 11/14/2022
                     Source from MDN Web docs 
                     URL: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel #}
+
                     <label for="phone_number">Phone number:</label>
                     <input type="tel" value="{{account[0].phone_number}}" id="phone_number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                     
                     <label for="account_type">Type:</label>
                     <select name="account_type" type="text" value="{{account[0].type}}" id="account_type" required>
-                        <option value="patron">Patron</option>
-                        <option value="chef">Chef</option>
-                        <option value="driver">Driver</option>
+                        <option value="patron" {% if account[0].type == "Patron" %} selected = "selected" {% endif %}>Patron</option>
+                        <option value="chef" {% if account[0].type == "Chef" %} selected = "selected" {% endif %}>Chef</option>
+                        <option value="driver" {% if account[0].type == "Driver" %} selected = "selected" {% endif %}>Driver</option>
                      </select>
                     <br><br>
 

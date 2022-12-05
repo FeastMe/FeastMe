@@ -1,3 +1,8 @@
+{# Citation for creating tables in Jinja:
+Date: 12/04/2022 
+Sourced from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app 
+URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/people.j2 #}
+
 {% extends 'base.j2' %}
 {% block content %}
 
@@ -24,6 +29,12 @@
                     {% endfor %} 
             {% endif %} 
         </table>
+
+    {# Citation for creating a form for CRUD operations in Jinja:
+    Date: 11/10/2022
+    Sourced from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app
+    URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
+
         <div id="edit">
             <form id="editDriver" action="/edit_driver/{{driver[0].account_id}}" method="post">
                 <h3>Edit Driver</h3>

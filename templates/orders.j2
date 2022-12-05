@@ -1,4 +1,8 @@
-{# Date: 11/15/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/people.j2 #}
+{# Citation for creating tables in Jinja:
+Date: 11/15/2022 
+Sourced from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app 
+URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/people.j2 #}
+
 {% extends 'base.j2' %}
 {% block content %}
 
@@ -18,10 +22,12 @@
             {% for key in item.keys() %}
                 <td>{{ item[key] }} </td>
             {% endfor %}
+
                 {# Citation for favicons added to Edit and Delete columns
                 Date: 11/28/2022
                 Copied fontawesome website for each icon
                 Source URL: https://fontawesome.com/icons/pen-to-square?s=regular&f=classic & https://fontawesome.com/icons/trash?s=regular&f=classic #}
+
                 <td><a href="edit_order/{{ item.order_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
                 <td><a href="delete_order/{{ item.order_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
         </tr>
@@ -29,6 +35,11 @@
     </tbody>
     {% endif %}
 </table>
+
+{# Citation for creating a form for CRUD operations in Jinja:
+Date: 11/15/2022
+Sourced from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app
+URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
 
 {% if patrons and drivers %}
 <h3>Add Order</h3>
@@ -53,7 +64,7 @@
             <input type="text" id="order_time" name="order_time">
 
             <label for="total_price">Total price:</label>
-            <input type="number" steps="0.01" min=0 id="total_price" name="total_price" required>    
+            <input type="number" step="0.01" min=0 id="total_price" name="total_price" required>    
 
             <label for="order_status">Order status:</label>
             <input type="text" id="order_status" name="order_status" required>    

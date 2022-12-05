@@ -1,4 +1,8 @@
-{# Date: 11/15/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/people.j2 #}
+{# Citation for creating a table:
+Date: 11/15/2022 
+Sourced from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app 
+URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/people.j2 #}
+
 {% extends 'base.j2' %}
 {% block content %}
 
@@ -19,10 +23,12 @@
             {% for key in item.keys() %}
                 <td>{{ item[key] }} </td>
             {% endfor %}
+
                 {# Citation for favicons added to Edit and Delete columns
                 Date: 11/28/2022
                 Copied fontawesome website for each icon
                 Source URL: https://fontawesome.com/icons/pen-to-square?s=regular&f=classic & https://fontawesome.com/icons/trash?s=regular&f=classic #}
+
                 <td><a href="edit_patron/{{ item.account_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
                 <td><a href="delete_patron/{{ item.account_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
         </tr>
@@ -34,7 +40,11 @@
 </table>
 
 
-{# Date: 11/17/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
+{# Citation for using form data for CRUD operations:
+Date: 11/17/2022
+Sourced from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app
+URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
+
 {% if unassigned_patrons %}
 <h3>Add Patron</h3>
 <div id="add">

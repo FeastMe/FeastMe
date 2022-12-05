@@ -1,9 +1,11 @@
 {% extends 'base.j2' %}
 {% block content %}
+
     {# Citation for transforming logo for the index page
     Date: 11/28/2022
     Adapted from stackoverflow original post and reply.
     Source URL: https://stackoverflow.com/questions/59478573/how-to-display-images-from-folder-in-python-html-and-flask #}
+    
     <div class="logo-transparent">
         <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" id="logo">
     </div>

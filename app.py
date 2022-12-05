@@ -3,9 +3,9 @@
 # Bianca Davies
 # Elliott Larsen
 
-# Citation for the following functions:
-# Date: 11/10/2022
-# Copied from: CS340 Flask starter example code
+# Citation for the following CRUD functions:
+# Date: 12/04/2022
+# Copied/Adopted from: CS340 Flask starter example code
 # Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/app.py 
 
 from flask import Flask, render_template, json, redirect
@@ -74,6 +74,7 @@ def edit_account(account_id):
                 return redirect('/accounts')
             
             except:
+                # If email is already in use.
                 return render_template('duplicate_acc_error.j2')
 
 @app.route('/delete_account/<int:account_id>')
@@ -87,6 +88,7 @@ def delete_account(account_id):
         return redirect('/accounts')
 
     except:
+        # If chef is bound to FK constrains from the Foods entity.
         return render_template('delete_chef_error.j2')
 
 @app.route('/add_account/', methods=['POST'])
@@ -110,7 +112,8 @@ def add_account():
                 return redirect('/accounts')
             
             except:
-                return render_template('/duplicate_acc_error.j2')
+                # If the email address is already in use.
+                return render_template('duplicate_acc_error.j2')
 
 ##########################
 # CRUD on patrons entity.#
@@ -119,13 +122,14 @@ def add_account():
 def patrons():
     # READ patrons
     if request.method == 'GET':
+        # Get all patrons
         query = "SELECT patrons.account_id, CONCAT(first_name, ' ', last_name) AS patron_name, street_number, street, unit_number, city, state, zip_code FROM accounts\
         INNER JOIN patrons ON patrons.account_id = accounts.account_id\
         ORDER by patrons.account_id;"
         cur = mysql.connection.cursor()
         cur.execute(query)
         patrons = cur.fetchall()
-
+        # Gell all accounts that are patrons but not part of the Patrons entity.
         query = "SELECT * FROM accounts WHERE accounts.type = 'Patron' AND accounts.account_id NOT IN (SELECT account_id FROM patrons);"
         cur = mysql.connection.cursor()
         cur.execute(query)
@@ -172,7 +176,6 @@ def delete_patron(account_id):
     mysql.connection.commit()
     return redirect('/patrons')
 
-
 @app.route('/add_patron/', methods=['POST'])
 def add_patron():
     # CREATE patron
@@ -200,13 +203,14 @@ def add_patron():
 def drivers():
     # READ drivers
     if request.method == 'GET':
+        # Get all drivers
         query = "SELECT drivers.account_id, CONCAT(first_name, ' ', last_name) AS driver_name, license_plate, license_number FROM accounts\
         INNER JOIN drivers ON drivers.account_id = accounts.account_id\
         ORDER BY drivers.account_id;"
         cur = mysql.connection.cursor()
         cur.execute(query)
         drivers = cur.fetchall()
-
+        # Get all accounts that are drivers but are not part of the Drivers entity.
         query = "SELECT * FROM accounts WHERE accounts.type = 'Driver' AND accounts.account_id NOT IN (SELECT account_id FROM drivers);"
         cur = mysql.connection.cursor()
         cur.execute(query)
@@ -272,13 +276,14 @@ def add_driver():
 def chefs():
     # READ chefs
     if request.method == 'GET':
+        # Get all chefs.
         query = "SELECT chefs.account_id, CONCAT(first_name, ' ', last_name) AS chef_name, cert_number, specialty, type FROM accounts\
         INNER JOIN chefs ON chefs.account_id = accounts.account_id\
         ORDER BY chefs.account_id;"
         cur = mysql.connection.cursor()
         cur.execute(query)
         chefs = cur.fetchall()
-
+        # Get all accounts that are chefs but are not part of the Chefs entity.
         query = "SELECT * FROM accounts WHERE accounts.type = 'Chef' AND accounts.account_id NOT IN (SELECT account_id FROM chefs);"
         cur = mysql.connection.cursor()
         cur.execute(query)
@@ -348,6 +353,7 @@ def add_chef():
 def orders():
     # READ orders
     if request.method == 'GET':
+        # Get all orders
         query = "SELECT order_id, CONCAT(first_name, ' ', last_name) AS ordered_by,\
         license_plate AS delivery_by,\
         CONCAT(\
@@ -370,12 +376,12 @@ def orders():
         cur = mysql.connection.cursor()
         cur.execute(query)
         orders = cur.fetchall()
-
+        # Get all patrons
         query = "SELECT * FROM patrons;"
         cur = mysql.connection.cursor()
         cur.execute(query)
         patrons = cur.fetchall()
-
+        # Get all drivers
         query = "SELECT * FROM drivers;"
         cur = mysql.connection.cursor()
         cur.execute(query)
@@ -440,6 +446,7 @@ def add_order():
 @app.route('/search_order/', methods=["GET"])
 def search_order():
     if request.method == "GET":
+        # Get patron's email address from the form field.
         search_query = request.args.get("patron_email")
         query = "SELECT order_id, CONCAT(first_name, ' ', last_name) AS ordered_by,\
         license_plate AS delivery_by,\
@@ -472,16 +479,17 @@ def search_order():
 def foods():
     # READ foods
     if request.method == 'GET':
+        # Get all foods
         query = "SELECT * FROM foods;"
         cur = mysql.connection.cursor()
         cur.execute(query)
         foods = cur.fetchall()
-
+        # Get all orders
         query = "SELECT * FROM orders;"
         cur = mysql.connection.cursor()
         cur.execute(query)
         orders = cur.fetchall()
-        
+        # Get all chefs
         query = "SELECT * FROM chefs;"
         cur = mysql.connection.cursor()
         cur.execute(query)
@@ -502,7 +510,7 @@ def edit_food(food_id):
         cur = mysql.connection.cursor()
         cur.execute(query)
         orders = cur.fetchall()
-        
+        # Update allows the user to set the FK value to NULL.
         query = "SELECT * FROM chefs;"
         cur = mysql.connection.cursor()
         cur.execute(query)
@@ -581,18 +589,19 @@ def search_food():
 def foods_has_ingredients():
     # READ foods_has_ingredients
     if request.method == 'GET':
+        # Get all Foods_has_Ingredients
         query = "SELECT f_has_i_id, foods.food_name, ingredients.ingredient_name FROM foods_has_ingredients\
         INNER JOIN foods ON foods_has_ingredients.food_id = foods.food_id\
         INNER JOIN ingredients ON foods_has_ingredients.ingredient_id = ingredients.ingredient_id;"
         cur = mysql.connection.cursor()
         cur.execute(query)
         foods_ingredients = cur.fetchall()
-
+        # Get all foods
         query = "SELECT * FROM foods;"
         cur = mysql.connection.cursor()
         cur.execute(query)
         foods = cur.fetchall()
-
+        # Get all ingredients
         query = "SELECT * FROM ingredients;"
         cur = mysql.connection.cursor()
         cur.execute(query)

@@ -1,3 +1,9 @@
+-- CS340 Fall 2022
+-- Group 17 (FeastMe)
+-- Bianca Davies
+-- Elliott Larsen
+-- Data Manipulation Queries
+
 ------------
 /* CREATE */
 ------------
@@ -50,13 +56,18 @@ FROM orders
 INNER JOIN accounts ON orders.ordered_by = accounts.account_id
 INNER JOIN patrons ON orders.ordered_by = patrons.account_id
 INNER JOIN drivers ON orders.delivery_by = drivers.account_id
-ORDER BY order_time DESC;"
--- Search order entity by patron or driver of the order
-SELECT order_id, ordered_by, delivery_by, order_time, total_price, order_status FROM orders WHERE ordered_by = :ordered_by_input OR delivery_by = :delivery_by_input OR order_time = :order_time_input;
+ORDER BY order_time DESC;
+-- Search order entity by patron's email
+SELECT order_id, CONCAT(first_name, ' ', last_name) AS ordered_by, license_plate AS delivery_by, CONCAT(IFNULL(street_number, ', '), ' ', street, ' ', IFNULL(unit_number, ''), ', ', city, ', ', state, ' ', zip_code) AS patron_address, order_time, total_price, order_status 
+FROM orders
+INNER JOIN accounts ON orders.ordered_by = accounts.account_id
+INNER JOIN patrons ON orders.ordered_by = patrons.account_id
+INNER JOIN drivers ON orders.delivery_by = drivers.account_id
+WHERE accounts.email = :account_email_input;
 -- Get all foods information
 SELECT * FROM foods;
--- Search foods entity by food name
-SELECT food_id, order_id, made_by, food_name, description, is_vegan, is_vegetarian, price FROM foods WHERE food_name = :food_name_input;
+-- Search foods entity by a search phrase
+SELECT * FROM foods WHERE foods.food_name LIKE :search_phrase_input OR foods.description LIKE :search_phrase_input;
 -- Get all ingredients information.
 SELECT * FROM ingredients;
 -- Search ingredients entity by ingredient name
@@ -95,11 +106,18 @@ UPDATE foods_has_ingredients SET food_id = :food_id, ingredient_id = :ingredient
 /* DELETE */
 ------------
 -- Delete an account
-DELETE FROM accounts WHERE account_id = :account_id_input
--- Orders entity will not allow update or delete since it is a transaction table.
+DELETE FROM accounts WHERE account_id = :account_id_input;
+-- Delete a patron
+DELETE FROM patrons WHERE account_id = :account_id_input;
+-- Delete a driver
+DELETE FROM drivers WHERE account_id = :account_id_input;
+-- Delete a chef
+DELETE FROM chefs WHERE account_id = :account_id_input;
+-- Delete an order
+DELETE FROM orders WHERE order_id = :order_id_input;
 -- Delete food
-DELETE FROM foods WHERE food_id = :food_id_input
+DELETE FROM foods WHERE food_id = :food_id_input;
 -- Delete ingredient
-DELETE FROM ingredients WHERE ingredient_id = :ingredient_id_input
+DELETE FROM ingredients WHERE ingredient_id = :ingredient_id_input;
 -- Delete an entry from the foods_has_ingredients table
-DELETE FROM foods_has_ingredients WHERE f_has_i_id = :f_has_i_id_input
+DELETE FROM foods_has_ingredients WHERE f_has_i_id = :f_has_i_id_input;

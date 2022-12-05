@@ -1,4 +1,7 @@
-{# Date: 11/10/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/people.j2 #}
+{# Citation for creating tables in Jinja:
+Date: 11/10/2022 
+Sourced from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app 
+URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/people.j2 #}
 
 {% extends 'base.j2' %}
 {% block content %}
@@ -27,18 +30,25 @@
                 <td>{{ item[key] }} </td>
                 {% endif %}
             {% endfor %}
+
                 {# Citation for favicons added to Edit and Delete columns
                 Date: 11/28/2022
                 Copied fontawesome website for each icon
                 Source URL: https://fontawesome.com/icons/pen-to-square?s=regular&f=classic & https://fontawesome.com/icons/trash?s=regular&f=classic #}
+
                 <td><a href="edit_account/{{ item.account_id }}" class="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
                 <td><a href="delete_account/{{ item.account_id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>
+    {% endif %}
 </table>
 
-{# Date: 11/10/2022; Source from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app; URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
+{# Citation for creating a form for CRUD operations in Jinja:
+Date: 11/10/2022
+Sourced from GitHub Reposotiry osu-cs-340-ecampus/flask-starter-app
+URL: https://github.com/osu-cs340-ecampus/flask-starter-app/blob/master/bsg_people_app/templates/edit_people.j2 #}
+
 <h3>Add Account</h3>
 <h4>Email address must be unique.</h4>
 <div id="add">
@@ -73,6 +83,4 @@
             <input type="submit" value="Submit" name="Add_Account" class="button" type="button">
         </fieldset>
     </form>
-
-{% endif %}
 {% endblock %}

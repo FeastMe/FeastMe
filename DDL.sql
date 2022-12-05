@@ -2,8 +2,10 @@
 -- Group 17 (FeastMe)
 -- Bianca Davies
 -- Elliott Larsen
+-- Data Definition Queries and Sample Data for FeastMe.
 
 /* Create Tables */
+/* accounts table */
 DROP TABLE IF EXISTS accounts;
 CREATE TABLE accounts (
     account_id INT(11) AUTO_INCREMENT,
@@ -15,7 +17,7 @@ CREATE TABLE accounts (
     type ENUM("Patron", "Driver", "Chef") NOT NULL,
     PRIMARY KEY(account_id)
 );
-
+/* patrons table */
 DROP TABLE IF EXISTS patrons;
 CREATE TABLE patrons (
     patron_id INT(11) NOT NULL AUTO_INCREMENT,
@@ -30,7 +32,7 @@ CREATE TABLE patrons (
     FOREIGN KEY(account_id) REFERENCES accounts(account_id)
     ON DELETE CASCADE
 );
-
+/* drivers table */
 DROP TABLE IF EXISTS drivers;
 CREATE TABLE drivers (
     driver_id INT(11) NOT NULL AUTO_INCREMENT,
@@ -41,7 +43,7 @@ CREATE TABLE drivers (
     FOREIGN KEY(account_id) REFERENCES accounts(account_id)
     ON DELETE CASCADE
 );
-
+/* chefs table */
 DROP TABLE IF EXISTS chefs;
 CREATE TABLE chefs (
     chef_id INT(11) NOT NULL AUTO_INCREMENT,
@@ -52,7 +54,7 @@ CREATE TABLE chefs (
     FOREIGN KEY(account_id) REFERENCES accounts(account_id)
     ON DELETE CASCADE
 );
-
+/* orders table */
 DROP TABLE IF EXISTS orders;
 CREATE TABLE orders (
     order_id INT(11) NOT NULL AUTO_INCREMENT,
@@ -65,7 +67,7 @@ CREATE TABLE orders (
     FOREIGN KEY(ordered_by) REFERENCES patrons(account_id) ON DELETE CASCADE,
     FOREIGN KEY(delivery_by) REFERENCES drivers(account_id) ON DELETE CASCADE
 );
-
+/* foods table */
 DROP TABLE IF EXISTS foods;
 CREATE TABLE foods (
     food_id INT(11) NOT NULL AUTO_INCREMENT,
@@ -80,7 +82,7 @@ CREATE TABLE foods (
     FOREIGN KEY(order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
     FOREIGN KEY(made_by) REFERENCES chefs(account_id)
 );
-
+/* ingredients table */
 DROP TABLE IF EXISTS ingredients;
 CREATE TABLE ingredients (
     ingredient_id INT(11) NOT NULL AUTO_INCREMENT,
@@ -89,7 +91,7 @@ CREATE TABLE ingredients (
     in_stock ENUM("Yes", "No") NOT NULL,
     PRIMARY KEY(ingredient_id)
 );
-
+/* foods_has_ingredients table */
 DROP TABLE IF EXISTS foods_has_ingredients;
 CREATE TABLE foods_has_ingredients (
     f_has_i_id INT(11) NOT NULL AUTO_INCREMENT,
@@ -101,7 +103,6 @@ CREATE TABLE foods_has_ingredients (
 );
 
 /* Populate Tables */
-
 INSERT INTO accounts(first_name, last_name, email, password, phone_number, type) VALUES
 ('Karl', 'Johnson', 'kmj8345@gmail.com', 'password125', '419-856-1111', 'Chef'),
 ('Sarah', 'Taylor', 'sarahtaylor@live.com',	'qw3rtY71',	'440-778-3265',	'Driver'),
@@ -112,14 +113,16 @@ INSERT INTO accounts(first_name, last_name, email, password, phone_number, type)
 ('Tom',	'Maan',	'maaningtom@gmail.com',	'OhioLovesMe1',	'419-778-0101',	'Driver'),
 ('Ava',	'Park',	'avaleannepark89@gmail.com', 'L@TTe&', '419-997-2000', 'Chef'),
 ('Alan', 'Liebowitz', 'liebowitz_49@live.com', 'Forever1', '440-997-6153', 'Driver'),
-('Tako', 'Nielsen', 'takoeatstaco@live.com', 'Tacos800', '440-778-7456', 'Patron');
+('Tako', 'Nielsen', 'takoeatstaco@live.com', 'Tacos800', '440-778-7456', 'Patron'),
+('Test', 'Patron', 'testpatron@gmail.com', 'testpatron', '341-345-3414', 'Patron'),
+('Test', 'Chef', 'testchef@gmail.com', 'testchef', '341-466-7856', 'Chef'),
+('Test', 'Driver', 'testdriver@gmail.com', 'testdriver', '562-452-3515', 'Driver');
 
 INSERT INTO patrons(account_id, street_number, street, unit_number, city, state, zip_code) VALUES
 ('6', '65010', 'Main Street', NULL, 'Cleveland', 'Ohio', '44109'),
 ('4', '82829', 'Union Street', '12', 'Akron', 'Ohio', '44301'),
 ('5', '79404', 'Washington Avenue',	NULL, 'Akron', 'Ohio', '44306'),
 ('10', '12932', 'Cherry Road', '804', 'Cleveland', 'Ohio', '44105');
-
 
 INSERT INTO drivers(account_id, license_plate, license_number) VALUES
 ('2', 'A04CF5', '65885432'),
